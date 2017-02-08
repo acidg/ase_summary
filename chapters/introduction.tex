@@ -1,1 +1,31 @@
 \section{Introduction}
+This lecture is about understanding how to build complex (software) systems, which trade-offs there are between quality and the architecture and how to efficiently deliver the developed software to the stakeholders.
+For that, different modeling techniques, system analysis and design with quality trade-offs, patterns, guidelines and best-practices are taught and tools for system configuration, integration and deployment are explained.
+
+The lecture is separated into 4 chapters:
+\begin{enumerate}
+    \item Context of Software Engineering
+        \subitem {\small Introduction, characteristics of software systems in different domains, case studies and factors affecting the design of a software system}
+    \item From (quality) requirements to system design
+        \subitem {\small Software architecture, libraries and frameworks, antipatterns, model-driven engineering, software product line engineering, safety and security, testability}
+    \item Software architectures and their trade-offs
+        \subitem {\small Distributed systems and middleware, database-, message-, object-, component- and service-oriented architectures}
+    \item From source code to physical deployment
+        \subitem {\small Historical perspective, version control, continuous integration and deployment, virtual machines and containers, software architectures for the cloud}
+\end{enumerate}
+
+\subsection{Characteristics of Software Systems}
+Software eningeering can be separated into the technical \& management and the application domain.
+The technical \& management domain contain the software system with limiting factors.
+First, there are different targets defining those borders: Beside the technical infrastructure which is defining the system's size, cost, quality, time and the functionality target are set limits.
+Those factors again are influenced by the process (high control) used to develop the system and the constraints (limited control: money, stakeholders, environmental influences, ...) limiting the resources available during development of the system.
+
+The application domain is influencing the functionality target (e.g. needed functionality, available inputs and outputs, ...) and the constrains (money, management, ...) in the technical \& management domain.
+
+The application domain can be divided into 
+\begin{itemize}[topsep=5pt, itemsep=0pt]
+    \item \textbf{Embedded} systems \textit{electronic devices, transportation, intelligent homes, ...}
+    \item \textbf{Information} systems \textit{logistics, marketing tools, management tools, ...}
+    \item \textbf{Cyberphysical} systems (connects embedded and information system) \textit{networks, reading sensors and putting out information, ...}
+    \item (\textbf{Scientific software} systems \textit{not covered})
+\end{itemize}
