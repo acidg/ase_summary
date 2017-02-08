@@ -41,6 +41,7 @@
 \usepackage{enumitem}
 \usepackage{color, colortbl}
 \usepackage[super]{nth}
+\usepackage{epigraph}
 
 \usepackage[
 	backend=biber,
@@ -86,6 +87,16 @@
 	pdfborder={0 0 0}
 }
 
+
+% Defining chapquote environment
+\makeatletter
+\newenvironment{chapquote}[2][2em]
+{\setlength{\@tempdima}{#1}%
+    \def\chapquote@author{#2}%
+    \parshape 1 \@tempdima \dimexpr\textwidth-2\@tempdima\relax%
+    \itshape}
+{\par\normalfont\hfill--\ \chapquote@author\hspace*{\@tempdima}\par\bigskip}
+\makeatother
 
 \begin{document}
 \setcounter{tocdepth}{3}
