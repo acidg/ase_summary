@@ -116,3 +116,48 @@ The design principles design by contract proposes are
   \item \textbf{Disciplined exception handling}: The two possible reactions to an exception are retrying or a failure/organized panic.
   \item \textbf{Exception simplicity} Simple rescue clauses that only bring the object back to a stable state, permitting a possible retry
 \end{itemize}
+
+\subsubsection{Dependency Structure Matrix (DSM)}
+A DSM is a two-dimensional matrix representing the structural or functional interrelationships of objects, tasks or teams.
+Each entry in the matrix indicates that the item on the corresponding column depends on the item on the corresponding row.\\
+Partitioning on the matrix describes the transformation so that all dependencies are below the diagonal or within groups (interdependencies) and results in a block triangular matrix form.
+To eliminate the groups/interdependencies, the corresponding rows and columns can be grouped to one (c.f.\ Figure~\ref{fig:dsm_grouping}).
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/dsm_grouping.png}
+  \caption{DSM Grouping}\label{fig:dsm_grouping}
+\end{figure}
+
+DSMs can be used to identify patterns an anti-patterns in software, c.f.\ Figure~\ref{fig:dsm_layered_pattern} and Figure~\ref{fig:dsm_propagator_anti_pattern}.
+
+\begin{figure}
+  \centering
+  \begin{minipage}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/dsm_layered_pattern.png}
+    \captionof{figure}{Layered Pattern in DSM}\label{fig:dsm_layered_pattern}
+  \end{minipage}%
+  \begin{minipage}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/dsm_propagator_anti_pattern}
+    \captionof{figure}{Propagator Anti-Pattern in DSM}\label{fig:dsm_propagator_anti_pattern}
+  \end{minipage}
+\end{figure}
+
+\begin{minipage}[t]{0.49\textwidth}
+    \textbf{Pros}
+    \begin{itemize}[topsep=0pt, itemsep=0pt]
+      \item Better scaling than box-and-line diagrams
+      \item Better understanding of information flows
+      \item Automatic partitioning algorithms
+      \item Efficient cycle detection
+      \item Integration of dependency rules
+    \end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+    \textbf{Cons}
+    \begin{itemize}[topsep=0pt, itemsep=0pt]
+      \item Only as good as the knowledge that goes in (unknown dependencies might exist)
+      \item less intuitive than a graph
+    \end{itemize}
+\end{minipage}
