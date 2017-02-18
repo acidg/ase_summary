@@ -1,0 +1,118 @@
+%!TEX root = ../summary.tex
+
+\section{From Requirements to System Design}
+\subsection{Software Architecture}
+Software Architecture is the fundamental organization of a system embodied in its components, their relationships to each other and the environment and the principles guiding its design and evolution.
+Its main purposes are quality, the efficiency of the development process, risk minimization, and managing communication and knowledge.\\
+Figure~\ref{fig:software_intensive_system_architecture} describes a model of how architecture looks like in software intensive systems.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/software_intensive_system_architecture.png}
+  \caption{Architecture in Software Intensive Systems}\label{fig:software_intensive_system_architecture}
+\end{figure}
+
+\begin{itemize}
+  \item The \textbf{system} is a collection of components which are organized to accomplish a function and has defined boundaries, consists of components and interfaces interacts with its environment through these interfaces and is defined by its static structure and dynamic behavior.
+  \item The \textbf{environment} are the developmental, operational, political and other influences on the system.
+  \item Every system has an \textbf{architecture} that can be described by an \textbf{architectural description}.
+  \item \textbf{Stakeholders} are people that have an interest in the system which can have various roles regarding the architectural description.
+  \item \textbf{Concerns} are interests which influence the system's development, its operation or any other aspect that is important to stakeholders.
+  \item \textbf{Views} address one or more concerns of the system stakeholders.
+  \item A \textbf{viewpoint} then describes a view and any associated modeling methods or analysis techniques by determining the languages for the architectural description
+  \item \textbf{(System) models} provide abstractions in different ways.
+    The object model describes the structure of the system, the functional model what the system's functions are and a dynamic model how the system reacts to external events.
+\end{itemize}
+
+\subsubsection{Modelling}
+Models \textbf{reduce} the reality to a subpart of the original where irrelevant parts to the application are omitted which increases abstraction.
+This reduction always has a \textbf{purpose} in mind which makes id adequate for a purpose or not and it is always possible to find a \textbf{mappging} between reality and the model.\\
+The process of modelling can be divided in the following repeating sub-processes:
+\begin{itemize}
+  \item \textbf{Understanding} the application domain and its problems and possible solutions
+  \item \textbf{Conceptualize} the part of the domain that is of relevance with the help of a concept language
+  \item \textbf{Abstract} by outlining the main problems that have to be supported by the system on the basis of forgetful mappings.
+  \item \textbf{Define} the main concepts/annotations used for the development of the model.
+  \item \textbf{Construct} a model by organizing and linking ideas, judgements or concepts.
+  \item \textbf{Evaluate} the model or parts of it considering pre-defined quality characteristics.
+  \item \textbf{Refine} with iterative development to make the model more elaborated while maintaining its main structure.
+\end{itemize}
+
+\subsubsection{Modularity}
+Modularity is the decomposition of a system into components to manage complexity by hiding unnecessary information to the outside world in these components.
+This increases maintainability and reusability since the single components can be switched out or used elsewhere.
+Also work can be easily distributed to the single components.\\
+Functional decomposition decomposes the system regarding functions which implies that one has to understand the whole system to make a change possibly.
+A better approach is modular decomposition where modules are the main concepts in a system.
+This assumes we can find concepts in a new (greenfield engineering) or existing (reeingineering) software system  and that we can create a component-based interface on any system (interface engineering).\\
+When looking at modules, we can either assume a black-box view where we only look at the possible input-output combinations and not the internals of the system or a whit-box view where the internals are regarded.
+
+\subsubsection{Component-based Software Engineering (CBSE)}
+CBSE is an approach to software development that relies on the reuse of software components which are a set of classes that can be considered a stand-alone service provider.
+Components then interact with each other over published, clear defined and standardized interfaces and are integrated with the help of some middleware.\\
+A software component has the following properties:
+\begin{itemize}
+  \item \textbf{Standardized}: Conformation to a standard component model
+  \item \textbf{Independent}: Deployable without dependences to other components or if needed it should be stated in a "requires" interface specification.
+  \item \textbf{Composable}: All interactions have to happen through the public interface
+  \item \textbf{Deployable}: Ability to operate as stand-alone entity on a component platform that provides an implementation of the component. This usually means that binaries are provided so that no compilation is necessary before deployment.
+  \item \textbf{Documented}: Syntax and also ideally semantics should be specified
+\end{itemize}
+
+Component interfaces are defined as shown in Figure~\ref{fig:component_interfaces}.\\
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/component_interfaces.png}
+  \caption{Component Interfaces}\label{fig:component_interfaces}
+\end{figure}
+
+A component model is a definition of standards for component implementation, documentation and deployment as shown in Figure~\ref{fig:component_model}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/component_model.png}
+  \caption{Component Model}\label{fig:component_model}
+\end{figure}
+It specifies how and in which language the interfaces should be defined and the elements which should be included (e.g.\ names, parameters,\ldots).
+Furthermore naming conventions are defined for the usage of the component, e.g.\ URIs and meta-data is provided which gives information about interfaces, attributes and helps users to find out what services are provided and required.
+Lastly the component model specifies how components should be packaged for deployment usually including all dependencies not specified in the "required" interface.\\
+
+After the modelling of the components, they can be composed as shown in Figure~\ref{fig:component_composition}.
+\newline
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.7\textwidth]{images/component_composition.png}
+  \caption{Component Composition}\label{fig:component_composition}
+\end{figure}
+
+\begin{minipage}[t]{0.49\textwidth}
+    \textbf{Pros}
+    \begin{itemize}[topsep=0pt, itemsep=0pt]
+        \item Independent components
+        \item Component standards to facilitate integration
+        \item Middleware to provide support for inter-operability
+        \item Development process that is geared to reuse
+    \end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+    \textbf{Cons}
+    \begin{itemize}[topsep=0pt, itemsep=0pt]
+        \item Component trustworthiness
+        \item Component quality certification
+        \item Emergent property prediction
+        \item Requirements trade-offs (difficult analysis between features of two components)
+    \end{itemize}
+\end{minipage}
+
+\subsubsection{Design by contract}
+Design by contract presents a set of principles to produce dependable and robust object-oriented software.
+Thereby a contract is an agreement between the client and the supplier.
+Each party expects benefits from the contract and is prepared to incur some obligations to obtain them.
+These benefits and obligations are documented in the contract where no obligations than the ones documented can be imposed to a party to obtain the benefits (no hidden clause rule).\\
+The design principles design by contract proposes are
+\begin{itemize}
+  \item \textbf{Non-redundancy}: no tests of preconditions
+  \item \textbf{Reasonable preconditions}: precondition is written in the documentation and can by justified according to that specification
+  \item \textbf{Failure principle}: execution of rescue clauses to its and, not leading to a retry instruction, causes the current routine to fail.
+  \item \textbf{Disciplined exception handling}: The two possible reactions to an exception are retrying or a failure/organized panic.
+  \item \textbf{Exception simplicity} Simple rescue clauses that only bring the object back to a stable state, permitting a possible retry
+\end{itemize}
