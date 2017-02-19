@@ -385,3 +385,24 @@ There are three different types of reference architectures described in Figure~\
   \end{tabular}
   \caption{Types and Elements of a reference architecture}\label{fig:reference_architectures}
 \end{figure}
+
+\subsection{Testability}
+In general testing or the assessment thereof is a very difficult topic to approach since we often do not know what metrics apply for good tests or tests suits and oftentimes that depends on the system under test.\\
+For that reason it is also quite difficult to measure the testability of a system, nevertheless we will try to give some definitions.
+All testing theory is mostly academic though, despite having a big importance in industry as well.\\
+
+The first approach defines testability as the degree to which a system or component facilitates the establishment of test criteria and the performance of tests to determine whether those criteria have been met.\\
+
+The second one tries to cast the problem to one of information loss which occurs if the input values to a program do not propagate to the output.
+This might happen implicitly if many input values yield the same output or explicitly if local variables are not checked after execution.
+With this in mind, we then define testability as the domain/range ration $DRR = \frac{|input~domain|}{|output~domain|}$.
+If the DRR is large, testability is poor.
+In case of implicit losses, we cannot do much since this depends on the specification.
+If we have explicit losses, one solution might be to increase the observability by increasing the size of the output domain by explicit observations.
+We might also increase the controllability for being able to also change modules internal states.
+By increasing observability and controllability, we need information about who modules work which contradicts the ideas of modularity, encapsulation and information hiding though.\\
+
+A last approach then would be to define testability as likelihood of a program to fail with the next test (given a particular assumed input distribution) if the software includes a bug.
+Although this might be a better definition for the quality of tests.
+With that definition we can try to inject defects into our programm and see if the output changes.
+By measuring the likelihood of such a change we can define that as the amount of testability our program has.
