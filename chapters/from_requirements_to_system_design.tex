@@ -275,3 +275,76 @@ Common antipatterns are:
   \item Golden Hammer: Using the same tools for everything
   \item Design by committee: A complex software design is the product of a committee process of too many people. The design is too complex to realize and test due to excessive complexity, ambiguities, over constraint and other specification defects.
 \end{itemize}
+
+\subsection{Reuse}
+When developing software, it is usually advisable to "invent the wheel twice".
+Therefor components should be designed with some principles in mind to support reuse:
+\begin{itemize}
+  \item Modularity to extract and insert modules
+  \item Loose coupling high cohesion also to extract modules
+  \item Information hiding for plug and play usage
+  \item Separation of concerns to be able to tell the responsibilities of a component
+\end{itemize}
+There are some pitfalls when trying to write reusable components though.
+Either technical issues like the reuse is only done at code level which has a very limited scope and is often done unsystematically  or inconsistent or incomplete component specifications reusability or organizational reasons like the lack of planning, motivation or component marketplaces can hinder the development of reusable software.
+Also everytime a trade-off between flexibility and stability has to be met so that enough flexibility that reuse is feasible and enough stability to generate benefits is given.\\
+Reusable components can either be a side product of development (opportunistic or ad-hoc reuse) or be planned (planned or structured reuse).
+Ad-hoc reuse usually dues not scale due the lack of infrastructure to maintain components like search, evaluation, adaption or integration services.
+So the better approach is structured reuse where essential functionality is parameterized so that it can easily be customized usually during deployment.\\
+
+\subsubsection{Variability}
+Variability can either be visible to the user (external variability) or hidden from them (internal variability).
+It is supported by the concept of managed variability which implies defining variability, managing variable artifacts, supporting activities concerned with resolving variability and collecting, storing and managing trace information necessary to fulfill these tasks.
+The time when variabilities are resolved is called binding time.\\
+Defining variability can be done as an integral part of development artifacts, which increases their complexity though, or in a separate model.
+
+\paragraph{Orthogonal Variability}
+An orthogonal variability model is a model that defines the variability of a software product line. It relates the variability defined to other software development models such as feature model, use case models, design models, component models, and test models.\\
+
+On requirement level, variability is modeled as feature diagram where parts can be mandatory or optional and have interdependencies.
+A variation point is defined as a representation of a variability subject and a variant then is a representation of a variability point.
+Figure~\ref{fig:feature_diagram} shows an example of a feature diagram.\\
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/feature_diagram.png}
+  \caption{Feature Diagram}\label{fig:feature_diagram}
+\end{figure}
+
+On code level, variety can be supported with conditional compilation, polymorphism, frame technology or aspect-oriented programming.
+
+\subsubsection{Product Line Engineering (PLE)}
+A software product line is a set of applications with a common architecture and shared components, with each application specialized to reflect different requirements.
+Specialization can take place in several domains including platform, environment, functions and processes.\\
+PLE then is the process of developing a product line with a heavy focus on reusability by separating development into \textbf{family engineering} and \textbf{application engineering}.
+Figure~\ref{fig:product_line_engineering} shows an illustration of this process.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.7\textwidth]{images/product_line_engineering.png}
+  \caption{Product Line Engineering}\label{fig:product_line_engineering}
+\end{figure}
+In family or domain engineering product commonalities and variabilities are identified and reusable (product line) artifacts are developed.
+An essential part of this is the scoping of the product line by defining sharp boundaries based on most of the concrete product requirements (all is not economical most of the time).
+Important aspects of this are which products will be in the line, which domains to consider, which features are required and which assets are in the line.
+These base artifacts cover variability as well as commonalities of the PL and are stored in the \textbf{product line artifact base}.
+During the application engineering process their variabilities then are instantiated according to the specific product requirements and thus individual products are developed.\\
+
+\begin{minipage}[t]{0.49\textwidth}
+    \textbf{Pros of well-done PLE}
+    \begin{itemize}[topsep=0pt, itemsep=0pt]
+        \item Reduces development costs
+        \item Increases quality
+        \item Decreases time-to-market
+        \item Better understanding of the domain
+        \item Structured reuse possible
+    \end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+    \textbf{Cons}
+    \begin{itemize}[topsep=0pt, itemsep=0pt]
+        \item High up-front invenstments
+        \item Strong domain knowledge and therefore experts necessary
+        \item May result in a badly scoped domain what leads to unwanted assets
+        \item Limited success in reality
+    \end{itemize}
+\end{minipage}
+
