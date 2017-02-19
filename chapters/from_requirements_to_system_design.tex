@@ -161,3 +161,93 @@ DSMs can be used to identify patterns an anti-patterns in software, c.f.\ Figure
       \item less intuitive than a graph
     \end{itemize}
 \end{minipage}
+
+\subsubsection{Guidelines for Modular Design}
+\paragraph{Low Coupling and High Cohesion}
+We denote the structure of a system as $S = (C,I,CON)$ where C are the components, $env \in C$ the environment, I the interfaces and $CON \subseteq I x I$ is the connection between interfaces.
+Figure~\ref{fig:system_structure_notation} shows the notation and possible relationships between components.
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}{.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/component_parent_relationship.png}
+    \caption{Parent relationship\\ parent(c) = parent(d) = a\\ parent(a) = env}
+  \end{subfigure}
+  \hspace{.03\textwidth}
+  \begin{subfigure}{.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/component_interface_relationship.png}
+    \caption{Interface-Component Relationship\\ assigned(i) = a\\ assigned(k) = b}
+  \end{subfigure}
+  \hspace{.03\textwidth}
+  \begin{subfigure}{.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/component_connection.png}
+    \caption{Connection between Interfaces\\ connected(c) = (i,k)}
+  \end{subfigure}
+  \caption{System Structure Notation}\label{fig:system_structure_notation}
+\end{figure}
+
+We then define \textbf{coupling} as the normalized number of connections between components at the same hierarchical level 
+\begin{equation*}
+  coupling(s) = \frac{{|con \in s.CON| \exists s,I: con = connected(i,j) ^ parent(assigned(i)) = parent(assigned(i))}|}{|s.C|}.
+\end{equation*}
+The goal is to make coupling as low as possible.
+
+We can define different classes of coupling, in the following listed in decreasing amount of coupling order:
+\begin{itemize}
+  \item \textbf{Content Coupling}: One component changes another component's data or when control is passed from one component to the middle of another.
+  \item \textbf{Common Coupling}: Two components share data which shows a lack of clear responsibility and reduces readability, maintainability and reusability
+  \item \textbf{External Coupling}: Components communicate through an external medium such as a file, device interface, protocol or data format.
+  \item \textbf{Control Coupling}: One Component directs exaction of another component by passing the necessary control information. This approach can be good if parameters allows factoring and reuse of functionality or bad if parameters indicate completely different behavior or components are not independent.
+  \item \textbf{Stamp Coupling}: Complete data structures are passed from one component to another.
+  \item \textbf{Data Coupling}: Component passes data (not data structures) to another component.
+\end{itemize}
+
+\textbf{Cohesion} is defined as how closely related different responsibilities of a component are. The goal is to make cohesion as high as possible.\\
+Like for coupling, we can again define types of cohesion, also in decreasing order:
+\begin{itemize}
+  \item \textbf{Functional Cohesion}: Every essential element to a computation is contained in the component so that a single input is transformed to a single output. Ideal kind of cohesion in that it maximizes reusability, testability, understandability, learnability, extensibility and maintainability.
+  \item \textbf{Sequential Cohesion}: The output of one component is the input of another and data flows between parts. Quite good kind of cohesion.
+  \item \textbf{Communicational Cohesion}: Elements operate on the same data
+  \item \textbf{Procedural Cohesion}: Elements are related only to ensure a particular order of execution. Actions are weakly connected and unlikely to be reusable
+  \item \textbf{Temporal Cohesion}: Elements are independent but are activated around the same point in time. Code is spread out which results in bad maintainability and reusability
+  \item \textbf{Logical Cohesion}: Elements are logically related, not functional
+  \item \textbf{Coincidental Cohesion}: Elements have no significant relation to each other (worst kind).
+\end{itemize}
+
+\paragraph{Single Responsibility Principle}
+Every class should only have one responsibility, if there are multiple split the class.
+A guideline for this is "there should never be more than one reason to change a class".
+
+\paragraph{Separation of Concerns}
+Separate features to different components which encapsulate a semantic concern what helps humans to handle complexity (only able to hold around 7 things in mind).
+This also enables components to be easily replaced.
+Modules therefore designed with the \textbf{open/closed principle} in mind.
+This means that a module is open for extension but closed for modification so that the behavior cannot be changed but only extended and thus no unexpected effects will arise.
+
+\paragraph{Liskov Substitution Principle (LSP)}
+\begin{chapquote}{Barbara Liskov. (1987)}
+    Let q(x) be a property provable about objects x of type T. Then q(y) should
+be provable for objects y of type S where S is a subtype of T.
+\end{chapquote}
+This means child classes should never violate the invariants of the base class or remove some of its behavior.
+
+\paragraph{Interface-Segregation Principle}
+Prefer small, cohesive interfaces over big ones.
+
+\paragraph{Anticipate change}
+Build components in a way that minimizes effort for potential future changes by finding a compromise between generality and specificity.
+A good guideline here is the principle of low coupling and high cohesion.
+It is easy to overdo it though, since reusability is oftentimes very difficult.
+
+\paragraph{Do not Repeat Yourself}
+Every piece of knowledge (and functionality) must have a single, unambiguous, authoritative representation within a system.
+This dramatically improves maintainability.\\
+Duplication can either be imposed (developers have no choice due to environment), inadvertent (duplication not realized by devs), due to impatience or lazyness or due to inter-developer communication or the lack thereof.
+
+\subsubsection{Architecture and External Quality}
+When introducing a high degree of modularity we influence internal quality by increasing maintainability and reusability.
+Testability might be increased or decreased depending on the system though.
+External quality might suffer also by introducing to many layers or indirections
+which decreases performance and also security might suffer by introducing large attack surfaces.\\
