@@ -406,3 +406,107 @@ A last approach then would be to define testability as likelihood of a program t
 Although this might be a better definition for the quality of tests.
 With that definition we can try to inject defects into our programm and see if the output changes.
 By measuring the likelihood of such a change we can define that as the amount of testability our program has.
+
+\subsection{Safety}
+Systems, no matter in what domain, are usually never to 100\% safe in reality.
+Therefore we define a safe system as a system that is above a specified safety threshold.
+So the goal is to determine how safe is safe enough without over- or under-engineering a product.
+
+\subsubsection*{Risk}
+Before we define such a threshold though, we have to define a measurement scale.
+For that we will use risk what is defined as the probability of the occurrence of harm times the severity $R = PHarm \cdot SHarm$ and harm as the physical damage to persons or the environment according to IEC 61508 and ISO 26262 (fundamental security standards).\\
+What is to note here that risk perception does usually not represent the actual risk.
+Risk perception is the subjective judgement that people make about the characteristics and severity of a risk.
+Risk aversion then is the reluctance of people to accept a bargain with an uncertain payoff rather than another bargain with more certain, but possibly lower, expected payoff and scale aversion then is the tendency to want greater protection where consequences are high.\\
+
+In reality risk is usually reduced to a level where it is \textbf{as low as is reasonable practical (ALARP principle)}.
+This reduction can take place in several aspects of systems: external measures like guardrails besides roads, electronics and software and other technologies like hydraulic back-ups.
+The process of risk reduction is depicted in Figure~\ref{fig:risk_reduction_process}.\\
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/risk_reduction_process.png}
+  \caption{Risk Reduction Process}\label{fig:risk_reduction_process}
+\end{figure}
+
+With these definitions in mind we can define safety as freedom or absence of unacceptable or unreasonable risk (complies to IEC and ISO).
+
+\subsubsection*{Faults, Errors and Failures}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/fault_error_failure.png}
+\end{figure}
+A fault is an abnormal condition that can cause an element or an item to fail.
+An error is defined as the discrepancy between a computed, observed or measured value or condition and the true, specified or theoretically correct value or condition and a failure then is the actual termination of the ability of an element to perform a function as required.
+
+Faults will lead to errors but errors not necessarily to failures due to error correction and redundancy.\\
+Causes of faults can be random issues like damage of fatigue or systematic issues like specification or design problems.
+Random failures can only occur in hardware and can be predicted with reasonable accuracy whereas systematic failures can be in hardware or software and can only be eliminated by a change in design or manufacturing and cannot be predicted.
+Latter ones can be tried to be avoided during the design and production phase by using techniques and procedures that aim to avoid the introduction of faults.
+Furthermore tolerance during operation can be introduced as mentioned before.
+This introduction of tolerance can also be applied for random faults.\\
+
+Failures of components can cause faults in systems which result in errors and maybe failures of the system.
+This can happen in a cascading fashion where component A fails, afterwards component B, \ldots until the system fails.
+Another way for system failure is a common cause failure where one root cause lets several components fail ``simultaneously'' which might ultimately lead to a system failure.
+
+\subsubsection*{Functional Safety}
+Functional safety focusses on the hazards (= potential source of harm) and risks originating from the function of an (E/E) system.
+
+The lifecycle approach in this context is an concept from 1947 which defines: The primary concern of the safety life cycle is the management of hazards: their identification, evaluation, elimination, and control through analysis, design and management procedures.
+Based on this concept, multiple functional safety standards arose which describe a safety lifecycle and identify activities and requirements based on it.
+An example is shown in Figure~\ref{fig:iso26262_software_lifecycle}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/iso26262_software_lifecycle.png}
+  \caption{ISO 26262 Software Lifecycle Model}\label{fig:iso26262_software_lifecycle}
+\end{figure}
+
+\subsubsection*{Safety Analyses using FMEA and FTA}
+Safety Analyses examine the consequences of faults and failures of functions, behavior and design of elements and provide information on conditions that could lead to the violation of safety goals.
+Furthermore they contribute to the identification of new non-functional hazards not discovered before.
+This is done on multiple levels of abstraction during the concept and product development phase.\\
+Qualitative analysis methods identify failures and do not predict their frequency whereas the quantitative approach does actually predict the frequency e.g.\ with Markov models.
+Another classification differentiates inductive vs deductive methods.
+Inductive ones (\textbf{failure mode and effects analysis (FMEA)}) are bottom-up methods which start with root causes to forecast unknown effects whereas deductive analysis methods (\textbf{fault tree analysis (FTA)}) go top-down and try to find out root causes from known effects.
+FMEA and FTA approaches are shown in Figures \ref{fig:fmea} and \ref{fig:fta}
+\begin{figure}
+  \centering
+  \begin{minipage}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/fmea.png}
+    \captionof{figure}{Failure Mode and Effect Analysis}\label{fig:fmea}
+  \end{minipage}%
+  \begin{minipage}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/fta.png}
+    \captionof{figure}{Fault Tree Analysis}\label{fig:fta}
+  \end{minipage}
+\end{figure}
+
+\paragraph{Design FMEA}
+\begin{figure}[H]
+  \centering
+  \includegraphics{images/design_fmea.png}
+  \caption{Design FMEA}
+\end{figure}
+\begin{description}
+  \item[Failure mode] Manner in which a component might fail to meet design intent
+  \item[Failure Effects] Effects of the failure mode on the functions perceived by the customer
+  \item[Causes] Indication of the design weakness causing the failure mode
+  \item[Detection/Prevention Measures] Activities that assure the design adequacy for the failure
+  \item[Severity (SEV)] Severity of potential failure effect on a scale from 1 to 10
+  \item[Occurence (OCC)] Likelihood of the failure on a scale from 1 to 10
+  \item[Detection (DET)] Likelihood of not detecting the failure before reaching the end-user on a scale from 1 to 10
+  \item[Risk Priority Number (RPN)] $RPN = SEV \cdot OCC \cdot DET$ used for priorization of concerns and actions
+\end{description}
+
+\paragraph{FTA}
+Procedure:
+\begin{enumerate}
+  \item Plan of the system and FMEA (if existing) as input.
+  \item Define system under scrunity
+  \item Determine undesired events/failures
+  \item Identify event or series of events that lead to top-level event
+  \item Apply recursively (apply AND/OR symbols)
+  \item Identify cut sets, a set of events that, taken together, lead to system failure.
+\end{enumerate}
