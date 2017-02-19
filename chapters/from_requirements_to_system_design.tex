@@ -468,7 +468,7 @@ This is done on multiple levels of abstraction during the concept and product de
 Qualitative analysis methods identify failures and do not predict their frequency whereas the quantitative approach does actually predict the frequency e.g.\ with Markov models.
 Another classification differentiates inductive vs deductive methods.
 Inductive ones (\textbf{failure mode and effects analysis (FMEA)}) are bottom-up methods which start with root causes to forecast unknown effects whereas deductive analysis methods (\textbf{fault tree analysis (FTA)}) go top-down and try to find out root causes from known effects.
-FMEA and FTA approaches are shown in Figures \ref{fig:fmea} and \ref{fig:fta}
+FMEA and FTA approaches are shown in Figures~\ref{fig:fmea} and~\ref{fig:fta}.
 \begin{figure}
   \centering
   \begin{minipage}{0.49\textwidth}
@@ -510,3 +510,35 @@ Procedure:
   \item Apply recursively (apply AND/OR symbols)
   \item Identify cut sets, a set of events that, taken together, lead to system failure.
 \end{enumerate}
+
+\subsection{Model-based Engineering}
+Models are appropriate abstractions of reality for a particular purpose and are an essential part of managing complexity in software engineering.
+Models consist of an operational context, interfaces, behavior at the borders of those interfaces and/or an inner structure of the artifacts in the system design.
+While modelling, different viewpoints have to be considered and a distinction between different levels of granularity has to be done.\\
+
+The ISO 26262's component model, shown (partly) in Figure~\ref{fig:iso_component_model}, supports a modular construction of the item under consideration with a suitable levels of abstraction.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/iso_component_model.png}
+  \caption{ISO 26262 Component Model}\label{fig:iso_component_model}
+\end{figure}
+It also supports inter-level allocation and modular decomposition of system models and allows for distributed development and reusable elements.\\
+
+MBE at an logical viewpoint provides a logical architecture consisting of a network of components connected via directed channels representing the communication path and interfaces.
+Components reactive behavior is described with state transition diagrams, code specifications and message sequence diagrams and the computational behavior with data flow diagrams.
+Hereby a logical description of the solution by providing a platform independent, reusable definition of the complete system behavior is given.\\
+
+On a technical viewpoint, the hardware architecture is composed of hardware components, ports (sensors and actuators) and busses.
+The software architecture is divided in a dynamic (tasks, messages, schedulers) and a static part (platform, middleware).
+Technical modelling provides a platform specific solution by defining necessary artifacts of software and hardware parts.\\
+
+A deployment logic model is then used to map components from the logical to the technical architecture.
+In the end a code generator is used to form an executable program out of the models.\\
+
+Advantages of MBE:\@
+\begin{itemize}
+  \item Easy verification and validation possible through model based test case generation, simulation,\ldots
+  \item Easy quality analysis possible
+\end{itemize}
+
+
