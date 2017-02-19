@@ -52,7 +52,7 @@ Components then interact with each other over published, clear defined and stand
 A software component has the following properties:
 \begin{itemize}
   \item \textbf{Standardized}: Conformation to a standard component model
-  \item \textbf{Independent}: Deployable without dependences to other components or if needed it should be stated in a "requires" interface specification.
+  \item \textbf{Independent}: Deployable without dependences to other components or if needed it should be stated in a ``requires'' interface specification.
   \item \textbf{Composable}: All interactions have to happen through the public interface
   \item \textbf{Deployable}: Ability to operate as stand-alone entity on a component platform that provides an implementation of the component. This usually means that binaries are provided so that no compilation is necessary before deployment.
   \item \textbf{Documented}: Syntax and also ideally semantics should be specified
@@ -73,7 +73,7 @@ A component model is a definition of standards for component implementation, doc
 \end{figure}
 It specifies how and in which language the interfaces should be defined and the elements which should be included (e.g.\ names, parameters,\ldots).
 Furthermore naming conventions are defined for the usage of the component, e.g.\ URIs and meta-data is provided which gives information about interfaces, attributes and helps users to find out what services are provided and required.
-Lastly the component model specifies how components should be packaged for deployment usually including all dependencies not specified in the "required" interface.\\
+Lastly the component model specifies how components should be packaged for deployment usually including all dependencies not specified in the ``required'' interface.\\
 
 After the modelling of the components, they can be composed as shown in Figure~\ref{fig:component_composition}.
 \newline
@@ -171,26 +171,26 @@ Figure~\ref{fig:system_structure_notation} shows the notation and possible relat
   \begin{subfigure}{.3\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/component_parent_relationship.png}
-    \caption{Parent relationship\\ parent(c) = parent(d) = a\\ parent(a) = env}
+    \caption{Parent relationship\\ $parent(c) = parent(d) = a$\\ $parent(a) = env$}
   \end{subfigure}
   \hspace{.03\textwidth}
   \begin{subfigure}{.3\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/component_interface_relationship.png}
-    \caption{Interface-Component Relationship\\ assigned(i) = a\\ assigned(k) = b}
+    \caption{Interface-Component Relationship\\ $assigned(i) = a$\\ $assigned(k) = b$}
   \end{subfigure}
   \hspace{.03\textwidth}
   \begin{subfigure}{.3\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/component_connection.png}
-    \caption{Connection between Interfaces\\ connected(c) = (i,k)}
+    \caption{Connection between Interfaces\\ $connected(c) = (i,k)$}
   \end{subfigure}
   \caption{System Structure Notation}\label{fig:system_structure_notation}
 \end{figure}
 
 We then define \textbf{coupling} as the normalized number of connections between components at the same hierarchical level 
 \begin{equation*}
-  coupling(s) = \frac{{|con \in s.CON| \exists s,I: con = connected(i,j) ^ parent(assigned(i)) = parent(assigned(i))}|}{|s.C|}.
+  coupling(s) = \frac{|\{con \in s.CON| \exists s,I: con = connected(i,j) \wedge parent(assigned(i)) = parent(assigned(i))\}|}{|s.C|}.
 \end{equation*}
 The goal is to make coupling as low as possible.
 
@@ -218,7 +218,7 @@ Like for coupling, we can again define types of cohesion, also in decreasing ord
 
 \paragraph{Single Responsibility Principle}
 Every class should only have one responsibility, if there are multiple split the class.
-A guideline for this is "there should never be more than one reason to change a class".
+A guideline for this is ``there should never be more than one reason to change a class''.
 
 \paragraph{Separation of Concerns}
 Separate features to different components which encapsulate a semantic concern what helps humans to handle complexity (only able to hold around 7 things in mind).
@@ -228,7 +228,7 @@ This means that a module is open for extension but closed for modification so th
 
 \paragraph{Liskov Substitution Principle (LSP)}
 \begin{chapquote}{Barbara Liskov. (1987)}
-    Let q(x) be a property provable about objects x of type T. Then q(y) should
+    Let $q(x)$ be a property provable about objects x of type T. Then $q(y)$ should
 be provable for objects y of type S where S is a subtype of T.
 \end{chapquote}
 This means child classes should never violate the invariants of the base class or remove some of its behavior.
@@ -269,7 +269,7 @@ The reasons for these mistakes are called the 7 deadly sins:
 
 Common antipatterns are:
 \begin{itemize}
-  \item The blob: A "god class" that does everything typically caused by the lack of an architecture or the enforcement thereof, too limited intervention or by the specification of the requirements. 
+  \item The blob: A ``god class'' that does everything typically caused by the lack of an architecture or the enforcement thereof, too limited intervention or by the specification of the requirements. 
   \item Functional decomposition: Modules are based on functionality instead of semantic parts from the view of the user. It is typically caused by a lack of object-oriented understanding, the lack of architecture enforcement and sometimes due to badly specified requirements
   \item Auto-generated stovepipe: Trying to use the same interfaces of an existing system for a distributed one.
   \item Golden Hammer: Using the same tools for everything
@@ -277,7 +277,7 @@ Common antipatterns are:
 \end{itemize}
 
 \subsection{Reuse}
-When developing software, it is usually advisable to "invent the wheel twice".
+When developing software, it is usually advisable to ``invent the wheel twice''.
 Therefor components should be designed with some principles in mind to support reuse:
 \begin{itemize}
   \item Modularity to extract and insert modules
@@ -348,3 +348,40 @@ During the application engineering process their variabilities then are instanti
     \end{itemize}
 \end{minipage}
 
+\subsubsection{Reference Architectures and Frameworks}
+\paragraph{Software Frameworks}
+A framework is a set of classes that embodies an abstract design for solutions to a family of related problems, and supports reuse at a larger granularity than classes.
+Frameworks support design reuse by providing a skeleton architecture for the application as well as the reuse of specific classes and are language specific.
+Applications using a framework extend generic classes of the framework in so called extension points or hot-spots.\\
+The main difference to a library is the call hierarchy.
+Frameworks call the application specific classes whereas when using a library the application calls the library code.
+Also frameworks usually already provide a semi-complete application whereas libraries are only pluggable parts of it.
+
+\paragraph{Reference Architectures}
+A Reference architecture is an abstract software architecture for a specific application area. It defines structures and types of software elements, and their interactions and responsibilities. The defined structures are applicable for all systems of a domain.
+There are three different types of reference architectures described in Figure~\ref{fig:reference_architectures}.
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{|p{.225\textwidth}|p{.225\textwidth}|p{.225\textwidth}|p{.225\textwidth}|}
+    \hline
+    & Functional & Logical & Technical\\
+    \hline
+    Phase of the development process & Requirements analysis & Conceptual design & Detailed design, Implementation\\
+    \hline
+    Provides a basis for & Functional specification, planning of subsystems & Logical architecture, planning of the implementation & Detailed architecture, implementation, deployment\\
+    \hline
+    Elements & Functional areas as units of functionality & Components as units of design and implementation & Components as units of implementation and deployment\\
+    \hline
+    Stakeholder & User, manager, project leaders & Project leaders, architects, developers & Architects, developer, maintenance staff\\
+    \hline
+    Architectural overview & Functional areas, data flow & Components, layers to be implemented & Technical components, layers which can be deployed\\
+    \hline
+    Textures (structures, principles and design concepts which occur often) & - & Design rule, may be expressed as a design pattern & Design rule, design pattern, code template\\
+    \hline
+    Reference interfaces & Named interfaces, if any & Named interfaces; defined in an implementation neutral definition language (e.g., IDL), if necessary & Defined in the programming language used\\
+    \hline
+    Infrastructure & - & Basic properties & Exactly defined\\
+    \hline
+  \end{tabular}
+  \caption{Types and Elements of a reference architecture}\label{fig:reference_architectures}
+\end{figure}
