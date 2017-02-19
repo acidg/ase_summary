@@ -42,6 +42,7 @@
 \usepackage{color, colortbl}
 \usepackage[super]{nth}
 \usepackage{epigraph}
+\usepackage{titlesec}
 
 \usepackage[
 	backend=biber,
@@ -82,6 +83,12 @@
 \renewcommand\footrulewidth{0.4pt} % Size of the footer rule
 
 \setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+% use paragraph as "subsubsubsection"
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 \hypersetup{	% Remove red boxes around links in table of contents
 	pdfborder={0 0 0}
