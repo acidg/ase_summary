@@ -251,3 +251,27 @@ When introducing a high degree of modularity we influence internal quality by in
 Testability might be increased or decreased depending on the system though.
 External quality might suffer also by introducing to many layers or indirections
 which decreases performance and also security might suffer by introducing large attack surfaces.\\
+
+\subsection{Antipatterns}
+Antipatterns are commonly occurring solutions to a problem that generates decidedly negative consequences.
+They define an industry vocabulary for common defective processes and implementations within organizations.
+Antipatterns can concern software development and software architecture.\\
+The reasons for these mistakes are called the 7 deadly sins:
+\begin{itemize}
+  \item Haste
+  \item Apathy (not caring)
+  \item Narrow-Mindedness (not applying common solutions)
+  \item Sloth (solutions based on easy answers)
+  \item Avarice (excessive complexity)
+  \item Ignorance
+  \item Pride
+\end{itemize}
+
+Common antipatterns are:
+\begin{itemize}
+  \item The blob: A "god class" that does everything typically caused by the lack of an architecture or the enforcement thereof, too limited intervention or by the specification of the requirements. 
+  \item Functional decomposition: Modules are based on functionality instead of semantic parts from the view of the user. It is typically caused by a lack of object-oriented understanding, the lack of architecture enforcement and sometimes due to badly specified requirements
+  \item Auto-generated stovepipe: Trying to use the same interfaces of an existing system for a distributed one.
+  \item Golden Hammer: Using the same tools for everything
+  \item Design by committee: A complex software design is the product of a committee process of too many people. The design is too complex to realize and test due to excessive complexity, ambiguities, over constraint and other specification defects.
+\end{itemize}
