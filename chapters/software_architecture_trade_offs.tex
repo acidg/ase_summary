@@ -188,7 +188,7 @@ It maps two arbitrary string values (row and column key) and a timestamp to an a
 Columns are sorted e lexicographically and are divided into so called tablets for load distribution.
 Columns have names of the form $family:qualifier$ and timestamps are used to version the data.\\
 \begin{minipage}[t]{0.49\textwidth}
-  \textbf{Pros (Redis)}
+  \textbf{Pros}
   \begin{itemize}[topsep=0pt,noitemsep]
     \item Performance of queries in petabytes of data
     \item Scalability by adding horizontally systems
@@ -201,7 +201,7 @@ Columns have names of the form $family:qualifier$ and timestamps are used to ver
   \end{itemize}
 \end{minipage}
 \begin{minipage}[t]{0.49\textwidth}
-  \textbf{Cons (Redis)}
+  \textbf{Cons}
   \begin{itemize}[topsep=0pt, noitemsep]
     \item No support for (RDBMS-style) multi-row transactions
     \item Offers no consistency guarantees for multi-row updates or cross-table updates (not even eventually)
@@ -214,13 +214,13 @@ Columns have names of the form $family:qualifier$ and timestamps are used to ver
 \textbf{Document-oriented databases} store data based on documents.
 No database scheme has to be set up which enables fast, agile development.
 Everything concerning an object is encapsulated together which increases performance since data can be read sequentially.
-An example for such a database is MongoDB.
+An example for such a database is MongoDB\@.
 A sharded cluster in Mongo consits of shards, query routers (mongos) and config servers.
 Mongos distribute querys according to the configs in the config servers to the shard holding the matching data.\\
 
 \textbf{Graph databases} store connections as first class citizens, readily available for any “join-like” navigation operation. Accessing those already persistent connections is an efficient, constant-time operation and allows you to quickly traverse millions of connections per second per core.\\
 \begin{minipage}[t]{0.49\textwidth}
-  \textbf{Pros (Redis)}
+  \textbf{Pros}
   \begin{itemize}[topsep=0pt,noitemsep]
     \item Fast runtime queries
     \item Constant time traversals in depth and breadth
@@ -229,7 +229,7 @@ Mongos distribute querys according to the configs in the config servers to the s
   \end{itemize}
 \end{minipage}
 \begin{minipage}[t]{0.49\textwidth}
-  \textbf{Cons (Redis)}
+  \textbf{Cons}
   \begin{itemize}[topsep=0pt, noitemsep]
     \item Costly on creation
     \item deleting a node also implies deleting transitions
@@ -263,4 +263,159 @@ An example is shown in Figure~\ref{fig:map_reduce_example}.
   \caption{MapReduce for Word Count}\label{fig:map_reduce_example}
 \end{figure}
 
+\subsection{Message-oriented Architectures}
+\subsubsection{Message-oriented Middleware (MOM)}
+For MOM client and service providers look alike, the difference is only conceptual.
+Messages are structured data defined by a type and consisting of name-value pairs clients and service providers have to agree on.\\
+They can either be \textbf{command messages} which tell the receiver what code to run, \textbf{document messages} which transmit data or \textbf{event messages} notifying the receiver of a change in the sender.\\
+MOM use message queues for communication.
+Clients place messages in a queue which are typically identified by name and might be bound to intended recipients.
+Whenever the recipient is ready to process a new message, it invokes the corresponding MOM function and retrieves the first message in the queue.
+A \textbf{point-to-point pattern} ensures that only one receiver consumes these messages whereas a \textbf{publish-subscribe} pattern supports multiple receivers.
+One should use different queues for different data types (\textbf{datatype pattern}).
+\textbf{Sharded queues} can be used to distribute load among multiple applications that provide the same service.
+The MOM then ensures that the message is only sent to one application.\\
+\begin{minipage}[t]{0.49\textwidth}
+  \textbf{Pros}
+  \begin{itemize}[topsep=0pt,noitemsep]
+    \item Remote communication
+    \item Decoupling of systems
+    \item Platform/application integration
+    \item Asynchronous communication protocol (send-and-forget)
+    \item Solves the issue of throttling (thanks to message queues)
+  \end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+  \textbf{Cons}
+  \begin{itemize}[topsep=0pt, noitemsep]
+    \item Complex programming model (?)
+    \item Scenarios where applications need synchronous solutions
+    \item Message sequence issues (message channels do not guarantee when a message will be delivered)
+  \end{itemize}
+\end{minipage}
+\vspace{20pt}
+
+\subsubsection{Enterprise Application Middleware (EAM) Middleware: Message Brokers}
+Message brokers act as a broker among system entities and are thereby creating a communication infrastructure for integrating applications (rather than only resource managers).
+They decouple the sender and the receiver by providing a single point of communication between them.
+They therefore also handle the routing between the two.
+Receivers/subscribers have to subscribe to messages of a given type and will receive them as soon as the sender/publisher publishes them.
+Several different services can be integrated using adapters.\\
+Message brokers do have some challenges.
+First, they might not scale very well with multiple connections, secondly security becomes an issue when having to handle a large amount of SSL certificates.
+Furthermore monitoring and debugging becomes expensive and maintenance is impossible without affecting the clients.
+
+\subsubsection{Reactive Systems}
+Reactive applications employ an architecture that allows you to build systems that are responsive, resilient, elastic, and message-driven and that are capable of producing a real-time feel.
+
+\paragraph{Actor Model}
+In the actor model an actor can react in three different ways upon receiving a message.
+Either it creates new actors, sends messages to actors it knows or designates how it should handle the next message it receives.
+It is fundamentally based on exchanging data only via messages.\\
+\begin{minipage}[t]{0.49\textwidth}
+  \textbf{Pros}
+  \begin{itemize}[topsep=0pt,noitemsep]
+    \item Message-driven approach is more intuitive
+    \item Directly and transparently applicable for distributed programming
+    \item Type-safe systems
+    \item Separation of concerns – clear distribution of responsibilities for actors
+    \item Ensures loose coupling, isolation, and location transparency
+  \end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+  \textbf{Cons}
+  \begin{itemize}[topsep=0pt, noitemsep]
+    \item Message-passing is slower
+    \item Actors do not work well when synchronous shared-state behavior is required
+    \item Steep learning curve (Scala with Akka)
+  \end{itemize}
+\end{minipage}
+\vspace{20pt}
+
+\subsection{Object-oriented architectures}
+\textbf{Object brokers} extend the remote procedure call paradigm to the object-oriented world and provide services that simplify the development of distributed object oriented applications.
+It extends RPC by inheritance and polymorphism in that the middleware binds clients to specific objects running on a server and manage their interactions.\\
+The Common Object Request Broker Architecture (CORBA) specification is the best known example of such an architecture.
+It offers a standardized specification of an object broker rather than an implementation.
+Figure~\ref{fig:corba} shows the basic architecture of CORBA.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/corba.png}
+  \caption{CORBA}\label{fig:corba}
+\end{figure}
+
+\begin{minipage}[t]{0.45\textwidth}
+  \textbf{CORBA was needed because no technology addressed all of the following requirements}
+  \begin{itemize}[topsep=0pt,noitemsep]
+    \item Bit protocol
+    \item Open interfaces
+    \item A single governance
+    \item Object-orientation
+    \item Language independence
+    \item Operating system independence
+    \item Freedom from technologies
+    \item Data-typing
+    \item High tunability
+    \item Freedom from data-transfer details
+    \item Compression
+  \end{itemize}
+\end{minipage}
+\hspace{.05\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
+  \textbf{CORBA in practice had a set of drawbacks that ultimately lead to low adoption for business applications:}
+  \begin{itemize}[topsep=0pt, noitemsep]
+    \item No standard tools
+    \item Hard to deploy
+    \item Heavy weight
+    \item Complex toolchain
+    \item Initial implementation incompatibilities
+    \item Location transparency
+    \item Design and process deficiencies
+    \item Problems with implementations
+    \item Firewall incompatibilities
+  \end{itemize}
+\end{minipage}
+\vspace{20pt}
+
+\subsection{Component-based Architectures}
+\subsubsection{Java EE}
+Java EE has a multi-tier architecture as shown in Figure~\ref{fig:java_ee}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.6\textwidth]{images/java_ee.png}
+  \caption{Java EE Architecture}\label{fig:java_ee}
+\end{figure}
+The client tier are the (remote) applications that access the JEE server.
+The web tier manages interaction between client and business tier like content generation and session management.
+The business tier realizes the business logic and the enterprise information system tier consists of databases, ERP systems, data warehoses and such.\\
+
+\paragraph{Application Server}
+The \textbf{application server} mediates access to system resources, handles life-cycle, deployment, communication and security management and is encapsulated into containers.
+The application client container manages application client components, the EJB (enterprise java beans) container the Java Beans components and the web container the JSP and servlet components.\\
+
+\paragraph{Enterprise Java Beans (EJB)}
+EJBs realize the business logic and can be of three different types.
+Session beans are generally available for one session and are used for only one client.
+They can be stateless so that they represent a state for only one method invokation, stateful for maintaining a state and singleton (somewhat exceptional?) for only one instance per server and shared among clients.
+Message-driven beans are used for asynchronous processing of messages.
+The last kind of beans are entity beans, but they are deprecated since J2EE 1.4.\\
+Clients are able to access enterprise via a no-interface view where the beans expose the public methods of the EJB implementation to clients or with the help of a business interface (annotated with @Local and @Remote).
+Receiving them is done either via dependency injection (@EJB) or with a Java Naming and Directory Interface (JNDI) lookup (remote beans [java:global], local beans [java:module, java:app]).
+
+\paragraph{Java Persistence API}
+The Java persistence API can be used to store POJOs to relational databases.
+Classes then are tables, object rows and attributes columns with the help of annotations.
+The EntityManger API then is used to create or remove persistent mappings and query over entities.
+
+\paragraph{Java Messaging Service (JMS)}
+The JMS is the MOM for java which supports point-to-point as well as publish-and-subscribe topologies.
+Messages consist of a header (standard attributes), properties (optional attributes) and a body (actual payload).
+
+\paragraph{Java Web Components}
+\textbf{Java Servlets} are classes that respond to client requests.
+\textbf{JavaServer Pages} are text based documents which mostly consist of HTML but also include some special tags that contain java code.
+\textbf{JavaServer Faces} is a MVC based web framework which uses templates (facelets) for views.
+
+\paragraph{Deployment}
+Java EE applications can either be deployed non-distributed where only one functionality layer and one database layer exist or distributed where web and application server are also separated.
 
