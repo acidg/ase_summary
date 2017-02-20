@@ -46,7 +46,7 @@ The automated build process makes it easy for everyone to get the latest executa
 In the end, even the deployment can be automated potentially.\\
 
 \textbf{Pros}
-\begin{itemize}
+\begin{itemize}[topsep=0pt, noitemsep]
   \item Reducing risk
   \item Integrated quality assurance
   \item Reports and feedback on the health of the code base
@@ -54,3 +54,34 @@ In the end, even the deployment can be automated potentially.\\
   \item Everyone commits to the main branch every day which results in modular, less complex code
 \end{itemize}
 
+\subsection{Continuous Deployment}
+Continuous deployment means that every change goes through the pipeline and automatically gets put into production, resulting in many production deployments every day.
+For continuous deployment continuous delivery is necessary.
+This is a software engineering approach in which teams keep producing valuable software in short cycles and ensure that the software can be reliably released at any time.\\
+
+A deployment pipeline is essential for automating the deployment process.
+It represents an automated manifestation of the process of getting software from version control into the hands of the users.
+It builds binaries deploys them the same way in every environment after some ``smoke-tests''.
+If it fails at any point, the deployment process is stopped.
+
+\paragraph{Deployment-automation Patterns}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/deployment_automation_patterns.png}
+  \caption{Deployment-automation Patterns}
+\end{figure}
+\begin{description}
+  \item[Repository] All files are committed to version-control repository — in the deployment context, all of the configuration files and tools.
+  \item[Scripted deployment] All deployment processes are written in a script.
+  \item[Single command] Deployers, or headless processes, can type a single command to generate working software for users.
+  \item[Externailzed configuration] All variable values are externalized from the application configuration into build-time properties.
+  \item[Tokenize configuration] Token values are entered into configuration files and then replaced during the Scripted Deployment based on Externalized Configuration properties checked into Repository.
+  \item[Template verifier] Create a single template file that all target environment properties are based on.
+  \item[Unified deployment] Create a single deployment script capable of running on different platforms and target environments.
+  \item[Remote deployment] Use a centralized machine or cluster to deploy software to multiple target environments.
+\end{description}
+
+\paragraph{Blue Green Deployment}
+In blue green deployment, two different production environments are maintained.
+In the start the blue one is live.
+For a new release, perform a final stage of testing in the green environment and once the software is working, switch to green.
