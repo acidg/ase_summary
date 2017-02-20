@@ -419,3 +419,31 @@ Messages consist of a header (standard attributes), properties (optional attribu
 \paragraph{Deployment}
 Java EE applications can either be deployed non-distributed where only one functionality layer and one database layer exist or distributed where web and application server are also separated.
 
+\subsubsection{AUTOSAR}
+AUTOSAR stands for Automotive Open System Architecture and is a standardized automotive reference architecture.
+Its main focuses are modularity, scalability, portability and reusability.
+
+\paragraph{Architecture}
+The AUTOSAR architecture is shown in Figure~\ref{fig:autosar}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/autosar.png}
+  \caption{AUTOSAR Architecture}\label{fig:autosar}
+\end{figure}
+AUTOSAR Software Components (SW-C) encapsulate an application that runs on the AUTOSAR infrastructure for which a standard description is provided.
+The Virtual Functional Bus (VFB) is an abstract representation of all communication mechanisms available.
+To integrate SW-Cs into a network of ECUs, AUTOSAR provides description formats for the system as well as for the resources and configurations of ECUs.
+The Runtime Environment (RTE) provides a common platform for SW-Cs.
+To establish that environment on ECUs, the methodology and tool support is provided by AUTOSAR.\\
+
+Regarding a module/ECU, there are four layers.
+The application layer consists of the applications developed against the RTE that realize functionality of sensors and actuators.
+The AUTOSAR RTE layer defines interfaces and basic library functions for the application layer and is the bridge to the basic software layer.
+This then is the actual operating system that handles things like memory management and communication.
+The lowest layer is the microcontroller abstraction layer which provides an abstraction from the I/O and communication with the microcontroller.\\
+
+AUTOSAR communication is routed via the RTE and can be done in two different paradigms.
+Either in client/server mode which is a two-way communication method or in sender/receiver mode which is a publish-and-subscribe style.\\
+
+When deploying, all nodes have an AUTOSAR infrastructure and SW-C will be deployed at their corresponding ECUs.
+That lets them communicate via the VFB which either handles messages via the RTE (intra-ECU) or physical buses (inter-ECU).
