@@ -541,4 +541,81 @@ Advantages of MBE:\@
   \item Easy quality analysis possible
 \end{itemize}
 
+\subsection{Security}
+Security is the protection of systems from external hazards.
+For recall, safety is the protection of people and the environment from hazards \textbf{originating from the system}.\\
+Security includes:\\
+\begin{minipage}[t]{0.49\textwidth}
+    \begin{itemize}[topsep=0pt,noitemsep]
+      \item Confidentiality
+      \item Integrity
+      \item Availability
+      \item Non-repudiation
+      \item Authenticity
+    \end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+    \begin{itemize}[topsep=0pt, noitemsep]
+      \item Auditability
+      \item Accountability
+      \item Privacy
+      \item Anonymity
+    \end{itemize}
+\end{minipage}
+
+\subsubsection{Relevance and Challenges}
+Information Security might matter in several domains like sensitive private, commercial or government data.
+Since in recent years everything gets more connected and more attack angles arise, security might become increasingly important.
+On the other hand, measures to protect data are costly and slow down systems, so we have to question ourselves if the it is worth it.
+This might depend on the specific projects though.
+Also, like with safety, we can never reach 100\% security.\\
+Security can be enhanced in different domains of a software system or a system in general.
+First, technical measures can be taken by cryptography, software and systems engineering or physical technologies (e.g.\ smart cards) amongst others.
+But it is also possible to increase security on an organizational, people-related or legal level.
+Especially people seem to be the weak link here by using same passwords, ignoring security warnings in the browser or even disabling security measures all together.
+
+\subsubsection{Design Principles}
+\begin{description}
+  \item[Least privilege] Every subject should not have more privileges than necessary to complete its (approved) job.
+    This minimizes the negative consequences of an inadvertent operating error in components.
+  \item[Complete mediatino] Access to every object must be controlled in a way not circumventable.
+  \item[Secure, fail-safe defaults] Security mechanisms should start in a secure state and return to a secure default state in case of failures.
+  \item[Compartmentalization] Organize resources into groups (compartments, zones), isolated from others except for limited, controlled means of communication.
+    This applies the principle of least privilege to entire components so that problems from attacks are limited to one compartment. Highly security-sensitive resources can even be isolated in special parts.
+  \item[Minimum exposure] Minimize the attack surface of potential attacks.i
+\end{description}
+
+\subsubsection{Implementation Level Concerns}
+\paragraph{SQL Injection}
+SQL injection can be applied when a server takes a user input as a part of a database query.
+These queries often look like ``SELECT fieldlist FROM table WHERE field = '\$INPUT' ''.
+Attackers can then enter something along the lines of ``anything' OR 'x'='x '' which actually extends the SQL query to their likes.
+
+\paragraph{Cross-Site Scripting}
+XSS can occur in two different forms, namely non-persistand/reflective, persistent or DOM based attacks.\\
+Reflective XSS can be carried out if the server takes URL parameters and echos them to the website.
+Attackers can place scripts as these parameters which will then be executed if the URL is opened.
+A common approach to that is sending a malicious link via E-mail and stealing cookies and thus user data from the receiver when they click the link.\\
+Persistent XSS is possible if a website stores user submitted data and displays it to others.
+Attackers use this by again placing scripts into the input of the server which stores them and renders them into HTML pages open another user requests a corresponding site.
+The script tag, if not escaped, then is inserted as actual script that will be executed.\\
+XSS can be prevented by escaping embedded JavaScript, but this is difficult, since the script can be encoded in different ways and other trickeries are possible (<scr<script>ipt> $Rightarrow$ script tag is remove, but another script tag will be there).
+
+\paragraph{Buffer Overflow Attacks}
+BOAs use the fact that in the x86 architecture call stack and heap usually are kept in the same memory and grow towards each other.
+This can be used to overwrite the return address of a program to let it crash or even execute malicious code by pointing the return address to that code.
+
+\subsubsection{Security Analyses}
+For security analyses we can reuse the concept of fault tree, here called attack trees.
+The nodes of the tree represent potential threads and can be annotated with different attributes like possibilities, estimated impact or attack cost.
+When having an annotated tree, try to resolve the most impactful/probable/\ldots attacks.\\
+Another approach is baseline protection.
+This is a catalog of what should be done in most situations including components of an IT system, a list of threads and a list of safeguards.
+This makes risk analyses only necessary in special cases, for everything else the catalogue is sufficient.
+
+\subsubsection{Trade-offs}
+When increasing security, trade-offs have to be met.
+First, performance might suffer due to the additional measures of security.
+Second usability can be decreased by introducing barriers like password pages.
+Since development efforts are also increased, the time to market is prolonged and costs are increased.
 
