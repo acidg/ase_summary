@@ -85,3 +85,25 @@ If it fails at any point, the deployment process is stopped.
 In blue green deployment, two different production environments are maintained.
 In the start the blue one is live.
 For a new release, perform a final stage of testing in the green environment and once the software is working, switch to green.
+
+\subsection{Virtual Machines and Containers}
+\paragraph{Virtualization}
+Virtualization is a combination of software and hardware engineering that creates Virtual Machines (VMs) - an abstraction of the computer hardware that allows a single machine to act as if it where many machines.
+This enables the current model of data centers where many virtual machines run on one machine.
+
+\paragraph{Containers}
+Containers apply virtualization at the operating system level instead of the hardware level (c.f.\ Figure~\ref{fig:container_vs_virtual_machines}).
+This makes containers smaller than hypervisor guests but does not allow running different kernels and has a more loosely approach to isolation and security.\\
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/container_vs_virtual_machines.png}
+  \caption{Virtual Machines vs Application Containers}\label{fig:container_vs_virtual_machines}
+\end{figure}
+
+The most popular system for container virtualization is Docker.
+Its system is depicted in Figure~\ref{fig:docker}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/docker.png}
+  \caption{Docker System}\label{fig:docker}
+\end{figure}
