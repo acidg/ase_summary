@@ -482,3 +482,70 @@ The life-cylce API can be used to install, start, stop, update and uninstall bun
 The module layer defines how to import and export code and the execution environment defines what methods and classes are available on a specific platform.
 They security layer handles all security aspects.\\
 
+\subsection{Service-oriented Architectures}
+A Service-Oriented Architecture (SOA) is a software architecture that is based on the key concepts of an application frontend, service, service repository, and service bus.
+A service consists of a contract, one or more interfaces, and an implementation
+Figure~\ref{fig:service_oriented_architecture} shows this concept.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/service_oriented_architecture.png}
+  \caption{Service-oriented Architecture}\label{fig:service_oriented_architecture}
+\end{figure}
+
+\subsubsection{Web Services}
+Web services are a standardized way of integrating Web-based applications using the XML, SOAP, WSDL, and UDDI open standards over an Internet protocol backbone.
+XML is used to tag the data, SOAP is used to transfer the data, WSDL is used for describing the services available, and UDDI is used for listing what services are available.
+
+\paragraph{SOAP}
+The SOAP protocol underlies all interactions among web services.
+SOAP messages consist of an optional header and a mandatory body.
+In these fields the data does not need to have a special format.
+SOAP communications can have different encodings and interaction styles.
+In document-style interaction the two interacting applications agree upon a structure of the documents exchanged between them whereas in RPC-style, one SOAP message encapsulates a request and the other a request.
+Only the method signature has to be specified with this approach.
+
+\paragraph{Web Service Description Language (WSDL)}
+WSDL is used to specify the interfaces of a web service and the mechanisms to access it with XML documents.
+
+\subsubsection{Representational State Transfer (REST)}
+Distributed systems can have any shape or form we want.
+The REST architectural style imposes some constraints on these systems that are targeted to provide a performant, scalable, simple and language agnostic system designed for the web.\\
+First of all REST implies a \textbf{client-server} structure of the system where UI concerns are separated from storage concerns.
+Secondly the communication between client and server has to be \textbf{stateless}which means that all necessary data to process a request has to be sent with it and no states are maintained on the server side.
+Thirdly, requests have to be \textbf{cacheable} which can be specified in the single requests.
+Fourthly, RESTful services allow an hierarchical layered architecture where every component cannot see beyond the immediate layer with which they are interacting.
+Lastly, the communication has to have a \textbf{uniform interface} between the communication partners.
+This means on the one hand that a uniform identification scheme of resources has to be provided and secondly a uniform representation of the data that is exchanged has to be given.
+Data representation is specified in the content-type of the HTTP header with the help of MIME (Multipurpose Internet Mail Extension) types.
+For resource identification URIs (Uniform resource identifiers) are used.
+Figure~\ref{fig:uri} shows an example of such an URI\@.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{images/uri.png}
+  \caption{URI Structure}\label{fig:uri}
+\end{figure}
+
+An additional, optional constraint for a RESTful service is \textbf{code-on-demand} which allows dynamic downloads of code to extend the system.\\
+
+The main problem domains identified in REST are \textbf{nouns}, \textbf{verbs} and the \textbf{content-type} represented in the REST triangle (c.f.\ Figure~\ref{fig:rest_triangle}).
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.7\textwidth]{images/rest_triangle.png}
+  \caption{REST Triangle}\label{fig:rest_triangle}
+\end{figure}
+
+The minimum provided verbs are 
+\begin{itemize}[noitemsep, topsep=0pt]
+  \item GET:\@ transfer a representation of the data from the resource to the client
+  \item PUT:\@ transfer state from the client to a resource
+  \item POST:\@ create new resource, add to a resource, but no overwrite!
+  \item DELETE:\@ request to destroy a resource
+\end{itemize}
+
+\subsubsection{Microservices}
+With the microservice approach we try to split distributed systems into components that are individually replaceable and upgradable.
+These components or services communicate over mechanisms like web service request or remote procedure calls. 
+The most often used protocols are HTTP with resource APIs and lightweight messaging.
+Since many small services are given, it is quite likely that one might fail at some point, so a certain amount of failure tolerance is essential.
+When developing a microservice, teams are split around business capabilities and not around technological ones.
+They should be as decoupled and as cohesive as possible and rather than using a set of defined standards they focus around the idea of producing useful tools that others can use.
