@@ -447,3 +447,38 @@ Either in client/server mode which is a two-way communication method or in sende
 
 When deploying, all nodes have an AUTOSAR infrastructure and SW-C will be deployed at their corresponding ECUs.
 That lets them communicate via the VFB which either handles messages via the RTE (intra-ECU) or physical buses (inter-ECU).
+
+\subsubsection{Android}
+Android has an open-source mobile system reference architecture which combines operating system, middleware and applications with a focus on modularity, portability, reusability and security.\\
+The architecture is a typical 4/5 layer architecture with high extensibility and high information hiding.
+The structure is shown in Figure~\ref{fig:android}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/android.png}
+  \caption{Android Architecture}\label{fig:android}
+\end{figure}
+The Linux kernel layer handles memory, processes, the network stack, drivers and security mechanisms and provides an hardware abstraction.
+The library layer is embedded in firmware and is exposed to the application framework.
+The runtime layer consists of the Dalvik/ART VM and provides core libraries for java.
+Furthermore it is optimized for performance and sandboxes apps in separate VMs.
+The framework layer is the open development platform which can be used by apps and the application layer is a set of core applications that is extensible by apps from the market.\\
+
+Apps are written in Java, compiled to Java Bytecode and packed into Dalvik executables in dex format.
+These executables contain the compiled classes, resources like layouts or images and the manifest which specifies included components.
+
+\subsubsection{OSGi}
+The Open Services Gateway initiative (OSGi) technology is a set of specifications that define a dynamic component system for Java.
+These specifications enable a development model where applications are (dynamically) composed of many different (reusable) components which communicate through services rather than POJOs.
+There are no standard implementations, but may frameworks for it.\\
+Figure~\ref{fig:osgi} shows the layered model of OSGi.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/osgi.png}
+  \caption{OSGi Layered Model}\label{fig:osgi}
+\end{figure}
+Bundles are the OSGi components made by developers.
+The service layer connects bundles by offering a publish-find-bind model for POJOs.
+The life-cylce API can be used to install, start, stop, update and uninstall bundles.
+The module layer defines how to import and export code and the execution environment defines what methods and classes are available on a specific platform.
+They security layer handles all security aspects.\\
+
