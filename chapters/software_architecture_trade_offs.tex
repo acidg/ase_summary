@@ -131,3 +131,136 @@ As always, it does not only have advantages though.
 DW projects are usually very costly in time (12 - 36 month) and money (1 million US\$ or more).
 Furthermore no design methodologies, insufficient training and some ethical considerations (security, privacy) exist.
 
+\subsubsection{Big Data Architectures}
+Big data is high-volume, high-velocity and high-variety information assets that demand cost-effective, innovative forms of information processing for enhanced insight and decision making.
+
+\paragraph{Scalability}
+Scalability is one of the key concepts of big data.
+It refers to the ability of a system to handle a growing amount of work in a capable manner or its ability to be enlarged to accommodate that growth. We differentiate between vertical and horizontal scaling.\\
+In \textbf{vertical scaling} an existing IT resource is replaced with another one with higher or lower capacity.
+If an replacement with an resource of lower capacity takes place, we speak of scaling up whereas an replacement with a higher capacity one is called scaling down.
+The advantage of this approach is that it is very easy to design vertical scaling.\\
+When \textbf{scaling horizontally} resources are allocated or released dynamically.
+Resource allocation is called scaling out and resource releasing is called scaling in.
+This approach is usually cheaper in the long run.\\
+
+In horizontal scaling, data is divided across so called \textbf{shards}.
+Every shard hold the same schemas, but its own subsets of the data.
+Every shard can be placed on a separate node what spreads the read and write operations across the cluster.
+When trying to query this distributed database then, different strategies how to look for specific data can be applied.\\
+The \textbf{lookup strategy} maintains a lookup table in a central node and forwards queries to the according shard based on a shard key and that table.\\
+The \textbf{range strategy} stores ranges of data on shards in sequential order. This can be used to determine which shard particular data is stored on.\\
+Lastly the \textbf{hash strategy} calculates hashes of keys and distributes data based on that hash.
+This has the advantage that data is less clustered which implies better load balancing.\\
+
+\paragraph{NoSQL Data Stores}
+Next generation databases mostly addressing some of the points: being non- relational, distributed, open-source and horizontally scalable.\\
+
+\textbf{Key-value stores} store data in an unstructured way by storing a key and an associated value.
+This approach usually has quite poor performance in cases that require processing of key ranges.
+This might be overcome with ordered key-value approaches.
+Value modeling is not included in this approach.\\
+\begin{minipage}[t]{0.49\textwidth}
+  \textbf{Pros (Redis)}
+  \begin{itemize}[topsep=0pt,noitemsep]
+    \item Disk-backed, in-memory database
+    \item Master-slave replication, automatic failover
+    \item Support for multiple data types
+    \item Lua scripting capabilities
+    \item Transaction support
+    \item Values can be set to expire
+    \item Pub/sub to implement messaging
+  \end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+  \textbf{Cons (Redis)}
+  \begin{itemize}[topsep=0pt, noitemsep]
+    \item Dataset size limited to computer RAM (but can span multiple machines' RAM with clustering)
+    \item Not suitable for complex applications with complex data models
+    \item Not suited for interconnected (graph) data
+    \item As the volume of data increases maintaining unique keys becomes more difficult and requires some complexity in generating character strings that will remain unique over a large set of keys
+  \end{itemize}
+\end{minipage}
+\vspace{20pt}
+
+\textbf{Bigtable} is a distributed storage system for managing structured data and is designed to scale to very large sizes.
+It maps two arbitrary string values (row and column key) and a timestamp to an arbitrary byte array.
+Columns are sorted e lexicographically and are divided into so called tablets for load distribution.
+Columns have names of the form $family:qualifier$ and timestamps are used to version the data.\\
+\begin{minipage}[t]{0.49\textwidth}
+  \textbf{Pros (Redis)}
+  \begin{itemize}[topsep=0pt,noitemsep]
+    \item Performance of queries in petabytes of data
+    \item Scalability by adding horizontally systems
+    \item Availability across the globe
+    \item Flexibility since no standard is defined
+    \item High speed retrieval independent of location
+    \item Data reliability even when disks fail
+    \item Storage size by harnessing the power of cheap disks
+    \item Versioning of data
+  \end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+  \textbf{Cons (Redis)}
+  \begin{itemize}[topsep=0pt, noitemsep]
+    \item No support for (RDBMS-style) multi-row transactions
+    \item Offers no consistency guarantees for multi-row updates or cross-table updates (not even eventually)
+    \item Lacks the freeform nature of json documents
+    \item No join functionality
+  \end{itemize}
+\end{minipage}
+\vspace{20pt}
+
+\textbf{Document-oriented databases} store data based on documents.
+No database scheme has to be set up which enables fast, agile development.
+Everything concerning an object is encapsulated together which increases performance since data can be read sequentially.
+An example for such a database is MongoDB.
+A sharded cluster in Mongo consits of shards, query routers (mongos) and config servers.
+Mongos distribute querys according to the configs in the config servers to the shard holding the matching data.\\
+
+\textbf{Graph databases} store connections as first class citizens, readily available for any “join-like” navigation operation. Accessing those already persistent connections is an efficient, constant-time operation and allows you to quickly traverse millions of connections per second per core.\\
+\begin{minipage}[t]{0.49\textwidth}
+  \textbf{Pros (Redis)}
+  \begin{itemize}[topsep=0pt,noitemsep]
+    \item Fast runtime queries
+    \item Constant time traversals in depth and breadth
+    \item Shortcuts possible by inserting new transitions
+    \item compact storage and memory caching and thus efficient scaling
+  \end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+  \textbf{Cons (Redis)}
+  \begin{itemize}[topsep=0pt, noitemsep]
+    \item Costly on creation
+    \item deleting a node also implies deleting transitions
+  \end{itemize}
+\end{minipage}
+\vspace{20pt}
+
+NoSQL data stores have their advantages respectively, but also some pitfalls.
+They have no standardized way of querying, it may be complex to handle data structures and the application layer has to enforce data integrity.
+Also there is no guarantee for support usually.
+
+\paragraph{Data Processing}
+Big data is handled with a process called \textbf{MapReduce}:
+\begin{enumerate}
+  \item Iterate over a large number of records (map)
+  \item Extract something of interest from each
+  \item Shuffle and sort intermediate results (reduce)
+  \item Aggregate intermediate results
+  \item Generate final output
+\end{enumerate}
+Programmers define two functions
+\begin{lstlisting}
+  map(k,v) -> [(k',v')]
+  reduce (k' [v']) -> [(k',v')]
+\end{lstlisting}
+and the framework takes care of scheduling, data distribution, synchronization and error and faults.
+An example is shown in Figure~\ref{fig:map_reduce_example}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/map_reduce_example.png}
+  \caption{MapReduce for Word Count}\label{fig:map_reduce_example}
+\end{figure}
+
+
