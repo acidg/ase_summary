@@ -107,3 +107,63 @@ Its system is depicted in Figure~\ref{fig:docker}.
   \includegraphics[width=.8\textwidth]{images/docker.png}
   \caption{Docker System}\label{fig:docker}
 \end{figure}
+
+\subsection{Software Architecture for the cloud}
+The cloud is a style of computing in which scalable and elastic IT-enabled capabilities are delivered as a service to external customers using Internet technologies.\\
+The main goals are increased availability and reachability, reduced investments and increased stability and the main challenges confidentiality, integrity, availability, privacy, the increased attack surface it implies, the difficulty to audit and legal and trust issues.\\
+The cloud provides on-demand self-service, broad network access and resource pooling.
+
+\paragraph{Cloud Reference Architecture}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.8\textwidth]{images/cloud_reference_architecture.png}
+  \caption{Cloud Reference Architecture}
+\end{figure}
+\begin{description}
+  \item[Cloud consumer] A person or organization that maintains a business relationship with, and uses service from, cloud providers.
+  \item[Cloud provider] A person, organization, or entity responsible for making a service available to interested parties.
+  \item[Cloud auditor] A party that can conduct independent assessment of cloud services, information system operations, performance and security of the cloud implementation.
+  \item[Cloud broker] An entity that manages the use, performance and delivery of cloud services, and negotiates relationships between cloud providers and cloud consumers.
+  \item[Cloud carrier] An intermediary that provides connectivity and transport of cloud services from cloud providers to cloud consumers.
+\end{description}
+
+\paragraph{Xaas}
+\textbf{Software as a Service (Saas)} provides applications running on the cloud to consumers.
+Network, Severs, OS and Storage is all handled by the provider, the consumer interacts with the cloud through client interfaces as a web browser or a program interface.\\
+
+\textbf{Platform as a Service (PaaS)} provides the consumer with programming languages,
+libraries, services, and tools who is then able to deploy an application into that environment.
+The provider still handles network, servers, OS and storage but the consumer has control over the deployed applications.\\
+
+\textbf{Infrastructure as a Service (IaaS)} provides the consumer with processing, storage, network and other fundamental computing resources onto which the customer can deploy arbitrary software (including OSes).
+The consumer here as control over OS, storage, deployed applications and a limited set of network components like firewalls.
+
+\paragraph{Deployment Model}
+A \textbf{public cloud infrastructure} is provisioned for open use by the general public.
+It may be owned, managed, and operated by a business, academic, or government organization, or some combination of them.
+It exists on the premises of the cloud provider.\\
+
+In a \textbf{private and out-sourced private cloud}, the infrastructure is provisioned for exclusive use by a single organization comprising multiple consumers (e.g.\ business units).
+It may be owned, managed, and operated by the organization, a third party, or some combination of them, and it may exist on or off premises.\\
+
+A \textbf{community cloud infrastructure} is provisioned for exclusive use by a specific community of consumers from organizations that have shared concerns (e.g.\ mission, security requirements, policy, and compliance considerations).
+It may be owned, managed, and operated by one or more of the organizations in the community, a third party, or some combination of them, and it may exist on or off premises.\\
+
+In a \textbf{hybrid model} the cloud infrastructure is a composition of two or more distinct cloud infrastructures (private, community, or public) that remain unique entities, but are bound together by standardized or proprietary technology that enables data and application portability (e.g.\ cloud bursting for load balancing between clouds).
+
+\paragraph{Fundamental Cloud Architectures}
+In a \textbf{workload distribution architecture} IT resources can be horizontally scaled via the addition of one or more identical IT resources, and a load balancer that provides runtime logic capable of evenly distributing the workload among the available IT resources.\\
+
+A special version of this is the \textbf{service load balancing architecture} which is geared specifically for scaling cloud service implementations.
+Redundant deployments of cloud services are created, with a load balancing system added to dynamically distribute workloads.\\
+
+A \textbf{resource pooling architecture} is based on the use of one or more resource pools, in which identical IT resources are grouped and maintained by a system that automatically ensures that they remain synchronized.\\
+
+The \textbf{dynamic scalability architecture} is an architectural model based on a system of predefined scaling conditions that trigger the dynamic allocation of IT resources from resource pools.
+Dynamic allocation enables variable utilization as dictated by usage demand fluctuations.
+This scaling can happen horizontally by adding new instances or vertically by increasing the resources of a single instance.
+An hybrid approach is also possible.\\
+
+
+
+
