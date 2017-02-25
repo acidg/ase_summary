@@ -190,7 +190,7 @@ Figure~\ref{fig:system_structure_notation} shows the notation and possible relat
 
 We then define \textbf{coupling} as the normalized number of connections between components at the same hierarchical level 
 \begin{equation*}
-  coupling(s) = \frac{|\{con \in s.CON| \exists s,I: con = connected(i,j) \wedge parent(assigned(i)) = parent(assigned(i))\}|}{|s.C|}.
+  coupling(s) = \frac{|\{con \in s.CON| \exists i,j \in s,I: con = connected(i,j) \wedge parent(assigned(i)) = parent(assigned(j))\}|}{|s.C|}.
 \end{equation*}
 The goal is to make coupling as low as possible.
 
