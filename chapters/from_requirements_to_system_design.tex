@@ -23,27 +23,27 @@ Figure~\ref{fig:software_intensive_system_architecture} describes a model of how
     The object model describes the structure of the system, the functional model what the system's functions are and a dynamic model how the system reacts to external events.
 \end{itemize}
 
-\subsubsection{Modelling}
+\subsubsection{Modeling}
 Models \textbf{reduce} the reality to a subpart of the original where irrelevant parts to the application are omitted which increases abstraction.
-This reduction always has a \textbf{purpose} in mind which makes id adequate for a purpose or not and it is always possible to find a \textbf{mappging} between reality and the model.\\
-The process of modelling can be divided in the following repeating sub-processes:
+This reduction always has a \textbf{purpose} in mind which makes id adequate for a purpose or not and it is always possible to find a \textbf{mapping} between reality and the model.\\
+The process of modeling can be divided in the following repeating sub-processes:
 \begin{itemize}
   \item \textbf{Understanding} the application domain and its problems and possible solutions
   \item \textbf{Conceptualize} the part of the domain that is of relevance with the help of a concept language
   \item \textbf{Abstract} by outlining the main problems that have to be supported by the system on the basis of forgetful mappings.
   \item \textbf{Define} the main concepts/annotations used for the development of the model.
-  \item \textbf{Construct} a model by organizing and linking ideas, judgements or concepts.
-  \item \textbf{Evaluate} the model or parts of it considering pre-defined quality characteristics.
+  \item \textbf{Construct} a model by organizing and linking ideas, judgments or concepts.
+  \item \textbf{Evaluate} the model or parts of it considering predefined quality characteristics.
   \item \textbf{Refine} with iterative development to make the model more elaborated while maintaining its main structure.
 \end{itemize}
 
 \subsubsection{Modularity}
 Modularity is the decomposition of a system into components to manage complexity by hiding unnecessary information to the outside world in these components.
-This increases maintainability and reusability since the single components can be switched out or used elsewhere.
+This increases maintainability and re-usability since the single components can be switched out or used elsewhere.
 Also work can be easily distributed to the single components.\\
 Functional decomposition decomposes the system regarding functions which implies that one has to understand the whole system to make a change possibly.
 A better approach is modular decomposition where modules are the main concepts in a system.
-This assumes we can find concepts in a new (greenfield engineering) or existing (reeingineering) software system  and that we can create a component-based interface on any system (interface engineering).\\
+This assumes we can find concepts in a new (greenfield engineering) or existing (re-engineering) software system  and that we can create a component-based interface on any system (interface engineering).\\
 When looking at modules, we can either assume a black-box view where we only look at the possible input-output combinations and not the internals of the system or a whit-box view where the internals are regarded.
 
 \subsubsection{Component-based Software Engineering (CBSE)}
@@ -75,7 +75,7 @@ It specifies how and in which language the interfaces should be defined and the 
 Furthermore naming conventions are defined for the usage of the component, e.g.\ URIs and meta-data is provided which gives information about interfaces, attributes and helps users to find out what services are provided and required.
 Lastly the component model specifies how components should be packaged for deployment usually including all dependencies not specified in the ``required'' interface.\\
 
-After the modelling of the components, they can be composed as shown in Figure~\ref{fig:component_composition}.
+After the modeling of the components, they can be composed as shown in Figure~\ref{fig:component_composition}.
 \newline
 
 \begin{figure}[h]
@@ -207,11 +207,11 @@ We can define different classes of coupling, in the following listed in decreasi
 \textbf{Cohesion} is defined as how closely related different responsibilities of a component are. The goal is to make cohesion as high as possible.\\
 Like for coupling, we can again define types of cohesion, also in decreasing order:
 \begin{itemize}
-  \item \textbf{Functional Cohesion}: Every essential element to a computation is contained in the component so that a single input is transformed to a single output. Ideal kind of cohesion in that it maximizes reusability, testability, understandability, learnability, extensibility and maintainability.
+  \item \textbf{Functional Cohesion}: Every essential element to a computation is contained in the component so that a single input is transformed to a single output. Ideal kind of cohesion in that it maximizes re-usability, testability, understandability, learnability, extensibility and maintainability.
   \item \textbf{Sequential Cohesion}: The output of one component is the input of another and data flows between parts. Quite good kind of cohesion.
   \item \textbf{Communicational Cohesion}: Elements operate on the same data
   \item \textbf{Procedural Cohesion}: Elements are related only to ensure a particular order of execution. Actions are weakly connected and unlikely to be reusable
-  \item \textbf{Temporal Cohesion}: Elements are independent but are activated around the same point in time. Code is spread out which results in bad maintainability and reusability
+  \item \textbf{Temporal Cohesion}: Elements are independent but are activated around the same point in time. Code is spread out which results in bad maintainability and re-usability
   \item \textbf{Logical Cohesion}: Elements are logically related, not functional
   \item \textbf{Coincidental Cohesion}: Elements have no significant relation to each other (worst kind).
 \end{itemize}
@@ -244,10 +244,10 @@ It is easy to overdo it though, since reusability is oftentimes very difficult.
 \paragraph{Do not Repeat Yourself}
 Every piece of knowledge (and functionality) must have a single, unambiguous, authoritative representation within a system.
 This dramatically improves maintainability.\\
-Duplication can either be imposed (developers have no choice due to environment), inadvertent (duplication not realized by devs), due to impatience or lazyness or due to inter-developer communication or the lack thereof.
+Duplication can either be imposed (developers have no choice due to environment), inadvertent (duplication not realized by devs), due to impatience or laziness or due to inter-developer communication or the lack thereof.
 
 \subsubsection{Architecture and External Quality}
-When introducing a high degree of modularity we influence internal quality by increasing maintainability and reusability.
+When introducing a high degree of modularity we influence internal quality by increasing maintainability and re-usability
 Testability might be increased or decreased depending on the system though.
 External quality might suffer also by introducing to many layers or indirections
 which decreases performance and also security might suffer by introducing large attack surfaces.\\
@@ -277,7 +277,7 @@ Common antipatterns are:
 \end{itemize}
 
 \subsection{Reuse}
-When developing software, it is usually advisable to ``invent the wheel twice''.
+When developing software, it is usually advisable not to ``reinvent the wheel''.
 Therefor components should be designed with some principles in mind to support reuse:
 \begin{itemize}
   \item Modularity to extract and insert modules
@@ -287,7 +287,7 @@ Therefor components should be designed with some principles in mind to support r
 \end{itemize}
 There are some pitfalls when trying to write reusable components though.
 Either technical issues like the reuse is only done at code level which has a very limited scope and is often done unsystematically  or inconsistent or incomplete component specifications reusability or organizational reasons like the lack of planning, motivation or component marketplaces can hinder the development of reusable software.
-Also everytime a trade-off between flexibility and stability has to be met so that enough flexibility that reuse is feasible and enough stability to generate benefits is given.\\
+Also every time a trade-off between flexibility and stability has to be met so that enough flexibility that reuse is feasible and enough stability to generate benefits is given.\\
 Reusable components can either be a side product of development (opportunistic or ad-hoc reuse) or be planned (planned or structured reuse).
 Ad-hoc reuse usually dues not scale due the lack of infrastructure to maintain components like search, evaluation, adaption or integration services.
 So the better approach is structured reuse where essential functionality is parameterized so that it can easily be customized usually during deployment.\\
@@ -315,7 +315,7 @@ On code level, variety can be supported with conditional compilation, polymorphi
 \subsubsection{Product Line Engineering (PLE)}
 A software product line is a set of applications with a common architecture and shared components, with each application specialized to reflect different requirements.
 Specialization can take place in several domains including platform, environment, functions and processes.\\
-PLE then is the process of developing a product line with a heavy focus on reusability by separating development into \textbf{family engineering} and \textbf{application engineering}.
+PLE then is the process of developing a product line with a heavy focus on re-usability by separating development into \textbf{family engineering} and \textbf{application engineering}.
 Figure~\ref{fig:product_line_engineering} shows an illustration of this process.
 \begin{figure}[h]
   \centering
@@ -416,7 +416,7 @@ So the goal is to determine how safe is safe enough without over- or under-engin
 Before we define such a threshold though, we have to define a measurement scale.
 For that we will use risk what is defined as the probability of the occurrence of harm times the severity $R = PHarm \cdot SHarm$ and harm as the physical damage to persons or the environment according to IEC 61508 and ISO 26262 (fundamental security standards).\\
 What is to note here that risk perception does usually not represent the actual risk.
-Risk perception is the subjective judgement that people make about the characteristics and severity of a risk.
+Risk perception is the subjective judgment that people make about the characteristics and severity of a risk.
 Risk aversion then is the reluctance of people to accept a bargain with an uncertain payoff rather than another bargain with more certain, but possibly lower, expected payoff and scale aversion then is the tendency to want greater protection where consequences are high.\\
 
 In reality risk is usually reduced to a level where it is \textbf{as low as is reasonable practical (ALARP principle)}.
@@ -504,7 +504,7 @@ FMEA and FTA approaches are shown in Figures~\ref{fig:fmea} and~\ref{fig:fta}.
 Procedure:
 \begin{enumerate}
   \item Plan of the system and FMEA (if existing) as input.
-  \item Define system under scrunity
+  \item Define system under scrutiny
   \item Determine undesired events/failures
   \item Identify event or series of events that lead to top-level event
   \item Apply recursively (apply AND/OR symbols)
@@ -514,7 +514,7 @@ Procedure:
 \subsection{Model-based Engineering}
 Models are appropriate abstractions of reality for a particular purpose and are an essential part of managing complexity in software engineering.
 Models consist of an operational context, interfaces, behavior at the borders of those interfaces and/or an inner structure of the artifacts in the system design.
-While modelling, different viewpoints have to be considered and a distinction between different levels of granularity has to be done.\\
+While modeling, different viewpoints have to be considered and a distinction between different levels of granularity has to be done.\\
 
 The ISO 26262's component model, shown (partly) in Figure~\ref{fig:iso_component_model}, supports a modular construction of the item under consideration with a suitable levels of abstraction.
 \begin{figure}[h]
@@ -530,7 +530,7 @@ Hereby a logical description of the solution by providing a platform independent
 
 On a technical viewpoint, the hardware architecture is composed of hardware components, ports (sensors and actuators) and busses.
 The software architecture is divided in a dynamic (tasks, messages, schedulers) and a static part (platform, middleware).
-Technical modelling provides a platform specific solution by defining necessary artifacts of software and hardware parts.\\
+Technical modeling provides a platform specific solution by defining necessary artifacts of software and hardware parts.\\
 
 A deployment logic model is then used to map components from the logical to the technical architecture.
 In the end a code generator is used to form an executable program out of the models.\\
