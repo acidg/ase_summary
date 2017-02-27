@@ -5,7 +5,7 @@
 Software Architecture is the fundamental organization of a system embodied in its components, their relationships to each other and the environment and the principles guiding its design and evolution.
 Its main purposes are quality, the efficiency of the development process, risk minimization, and managing communication and knowledge.\\
 Figure~\ref{fig:software_intensive_system_architecture} describes a model of how architecture looks like in software intensive systems.
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[width=.8\textwidth]{images/software_intensive_system_architecture.png}
   \caption{Architecture in Software Intensive Systems}\label{fig:software_intensive_system_architecture}
@@ -25,7 +25,7 @@ Figure~\ref{fig:software_intensive_system_architecture} describes a model of how
 
 \subsubsection{Modeling}
 Models \textbf{reduce} the reality to a subpart of the original where irrelevant parts to the application are omitted which increases abstraction.
-This reduction always has a \textbf{purpose} in mind which makes id adequate for a purpose or not and it is always possible to find a \textbf{mapping} between reality and the model.\\
+This reduction always has a \textbf{purpose} in mind which makes it  adequate for a purpose or not and it is always possible to find a \textbf{mapping} between reality and the model.\\
 The process of modeling can be divided in the following repeating sub-processes:
 \begin{itemize}
   \item \textbf{Understanding} the application domain and its problems and possible solutions
@@ -44,10 +44,10 @@ Also work can be easily distributed to the single components.\\
 Functional decomposition decomposes the system regarding functions which implies that one has to understand the whole system to make a change possibly.
 A better approach is modular decomposition where modules are the main concepts in a system.
 This assumes we can find concepts in a new (greenfield engineering) or existing (re-engineering) software system  and that we can create a component-based interface on any system (interface engineering).\\
-When looking at modules, we can either assume a black-box view where we only look at the possible input-output combinations and not the internals of the system or a whit-box view where the internals are regarded.
+When looking at modules, we can either assume a black-box view where we only look at the possible input-output combinations and not the internals of the system, or a white-box view where the internals are regarded.
 
 \subsubsection{Component-based Software Engineering (CBSE)}
-CBSE is an approach to software development that relies on the reuse of software components which are a set of classes that can be considered a stand-alone service provider.
+CBSE is an approach to software development that relies on the reuse of software components which are a set of classes that can be considered as stand-alone service providers.
 Components then interact with each other over published, clear defined and standardized interfaces and are integrated with the help of some middleware.\\
 A software component has the following properties:
 \begin{itemize}
@@ -59,16 +59,16 @@ A software component has the following properties:
 \end{itemize}
 
 Component interfaces are defined as shown in Figure~\ref{fig:component_interfaces}.\\
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[width=.8\textwidth]{images/component_interfaces.png}
   \caption{Component Interfaces}\label{fig:component_interfaces}
 \end{figure}
 
 A component model is a definition of standards for component implementation, documentation and deployment as shown in Figure~\ref{fig:component_model}.
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=.8\textwidth]{images/component_model.png}
+  \includegraphics[width=.7\textwidth]{images/component_model.png}
   \caption{Component Model}\label{fig:component_model}
 \end{figure}
 It specifies how and in which language the interfaces should be defined and the elements which should be included (e.g.\ names, parameters,\ldots).
@@ -78,7 +78,7 @@ Lastly the component model specifies how components should be packaged for deplo
 After the modeling of the components, they can be composed as shown in Figure~\ref{fig:component_composition}.
 \newline
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[width=.7\textwidth]{images/component_composition.png}
   \caption{Component Composition}\label{fig:component_composition}
@@ -110,9 +110,9 @@ Each party expects benefits from the contract and is prepared to incur some obli
 These benefits and obligations are documented in the contract where no obligations than the ones documented can be imposed to a party to obtain the benefits (no hidden clause rule).\\
 The design principles design by contract proposes are
 \begin{itemize}
-  \item \textbf{Non-redundancy}: no tests of preconditions
-  \item \textbf{Reasonable preconditions}: precondition is written in the documentation and can by justified according to that specification
-  \item \textbf{Failure principle}: execution of rescue clauses to its and, not leading to a retry instruction, causes the current routine to fail.
+  \item \textbf{Non-redundancy}: no tests of preconditions (contrary to defensive programming)
+  \item \textbf{Reasonable preconditions}: precondition is written in the documentation and can be justified according to that specification
+  \item \textbf{Failure principle}: execution of rescue clauses to its end, not leading to a retry instruction, causes the current routine to fail.
   \item \textbf{Disciplined exception handling}: The two possible reactions to an exception are retrying or a failure/organized panic.
   \item \textbf{Exception simplicity} Simple rescue clauses that only bring the object back to a stable state, permitting a possible retry
 \end{itemize}
@@ -199,7 +199,7 @@ We can define different classes of coupling, in the following listed in decreasi
   \item \textbf{Content Coupling}: One component changes another component's data or when control is passed from one component to the middle of another.
   \item \textbf{Common Coupling}: Two components share data which shows a lack of clear responsibility and reduces readability, maintainability and reusability
   \item \textbf{External Coupling}: Components communicate through an external medium such as a file, device interface, protocol or data format.
-  \item \textbf{Control Coupling}: One Component directs exaction of another component by passing the necessary control information. This approach can be good if parameters allows factoring and reuse of functionality or bad if parameters indicate completely different behavior or components are not independent.
+  \item \textbf{Control Coupling}: One Component directs exaction of another component by passing the necessary control information. This approach can be good if parameters allow factoring and reuse of functionality or bad if parameters indicate completely different behavior or components are not independent.
   \item \textbf{Stamp Coupling}: Complete data structures are passed from one component to another.
   \item \textbf{Data Coupling}: Component passes data (not data structures) to another component.
 \end{itemize}
@@ -247,7 +247,7 @@ This dramatically improves maintainability.\\
 Duplication can either be imposed (developers have no choice due to environment), inadvertent (duplication not realized by devs), due to impatience or laziness or due to inter-developer communication or the lack thereof.
 
 \subsubsection{Architecture and External Quality}
-When introducing a high degree of modularity we influence internal quality by increasing maintainability and re-usability
+When introducing a high degree of modularity we influence internal quality by increasing maintainability and re-usability.
 Testability might be increased or decreased depending on the system though.
 External quality might suffer also by introducing to many layers or indirections
 which decreases performance and also security might suffer by introducing large attack surfaces.\\
@@ -271,14 +271,14 @@ Common antipatterns are:
 \begin{itemize}
   \item The blob: A ``god class'' that does everything typically caused by the lack of an architecture or the enforcement thereof, too limited intervention or by the specification of the requirements. 
   \item Functional decomposition: Modules are based on functionality instead of semantic parts from the view of the user. It is typically caused by a lack of object-oriented understanding, the lack of architecture enforcement and sometimes due to badly specified requirements
-  \item Auto-generated stovepipe: Trying to use the same interfaces of an existing system for a distributed one.
+  \item Auto-generated stovepipe: Use generators and try to fit the design of the architecture to the capabilities of the generator, e.g.\ trying to use the same interfaces of an existing system for a distributed one.
   \item Golden Hammer: Using the same tools for everything
   \item Design by committee: A complex software design is the product of a committee process of too many people. The design is too complex to realize and test due to excessive complexity, ambiguities, over constraint and other specification defects.
 \end{itemize}
 
 \subsection{Reuse}
 When developing software, it is usually advisable not to ``reinvent the wheel''.
-Therefor components should be designed with some principles in mind to support reuse:
+Therefore, components should be designed with some principles in mind to support reuse:
 \begin{itemize}
   \item Modularity to extract and insert modules
   \item Loose coupling high cohesion also to extract modules
@@ -286,11 +286,13 @@ Therefor components should be designed with some principles in mind to support r
   \item Separation of concerns to be able to tell the responsibilities of a component
 \end{itemize}
 There are some pitfalls when trying to write reusable components though.
-Either technical issues like the reuse is only done at code level which has a very limited scope and is often done unsystematically  or inconsistent or incomplete component specifications reusability or organizational reasons like the lack of planning, motivation or component marketplaces can hinder the development of reusable software.
-Also every time a trade-off between flexibility and stability has to be met so that enough flexibility that reuse is feasible and enough stability to generate benefits is given.\\
+Either technical issues like the reuse is only done at code level, which has a very limited scope and is often done unsystematically, or inconsistent or incomplete component specifications re-usability or organizational reasons like the lack of planning, motivation or component marketplaces can hinder the development of reusable software.
+Also every time a trade-off between flexibility and stability has to be met.
+On the one hand, flexibility has to be high enough in order to make reuse feasible.
+On the other hand, sufficient stability has to be provided in order to generate benefits from the reuse.\\
 Reusable components can either be a side product of development (opportunistic or ad-hoc reuse) or be planned (planned or structured reuse).
-Ad-hoc reuse usually dues not scale due the lack of infrastructure to maintain components like search, evaluation, adaption or integration services.
-So the better approach is structured reuse where essential functionality is parameterized so that it can easily be customized usually during deployment.\\
+Ad-hoc reuse usually does not scale due to the lack of infrastructure to maintain components like search, evaluation, adaption or integration services.
+The better approach is structured reuse where essential functionality is parameterized so that it can easily be customized usually during deployment.
 
 \subsubsection{Variability}
 Variability can either be visible to the user (external variability) or hidden from them (internal variability).
@@ -358,9 +360,9 @@ Frameworks call the application specific classes whereas when using a library th
 Also frameworks usually already provide a semi-complete application whereas libraries are only pluggable parts of it.
 
 \paragraph{Reference Architectures}
-A Reference architecture is an abstract software architecture for a specific application area. It defines structures and types of software elements, and their interactions and responsibilities. The defined structures are applicable for all systems of a domain.
+A reference architecture is an abstract software architecture for a specific application area. It defines structures and types of software elements, and their interactions and responsibilities. The defined structures are applicable for all systems of a domain.
 There are three different types of reference architectures described in Figure~\ref{fig:reference_architectures}.
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \begin{tabular}{|p{.225\textwidth}|p{.225\textwidth}|p{.225\textwidth}|p{.225\textwidth}|}
     \hline
@@ -422,9 +424,9 @@ Risk aversion then is the reluctance of people to accept a bargain with an uncer
 In reality risk is usually reduced to a level where it is \textbf{as low as is reasonable practical (ALARP principle)}.
 This reduction can take place in several aspects of systems: external measures like guardrails besides roads, electronics and software and other technologies like hydraulic back-ups.
 The process of risk reduction is depicted in Figure~\ref{fig:risk_reduction_process}.\\
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=.8\textwidth]{images/risk_reduction_process.png}
+  \includegraphics[width=.2\textwidth]{images/risk_reduction_process.png}
   \caption{Risk Reduction Process}\label{fig:risk_reduction_process}
 \end{figure}
 
@@ -455,9 +457,9 @@ Functional safety focusses on the hazards (= potential source of harm) and risks
 The lifecycle approach in this context is an concept from 1947 which defines: The primary concern of the safety life cycle is the management of hazards: their identification, evaluation, elimination, and control through analysis, design and management procedures.
 Based on this concept, multiple functional safety standards arose which describe a safety lifecycle and identify activities and requirements based on it.
 An example is shown in Figure~\ref{fig:iso26262_software_lifecycle}
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=.8\textwidth]{images/iso26262_software_lifecycle.png}
+  \includegraphics[width=\textwidth]{images/iso26262_software_lifecycle.png}
   \caption{ISO 26262 Software Lifecycle Model}\label{fig:iso26262_software_lifecycle}
 \end{figure}
 
@@ -469,7 +471,7 @@ Qualitative analysis methods identify failures and do not predict their frequenc
 Another classification differentiates inductive vs deductive methods.
 Inductive ones (\textbf{failure mode and effects analysis (FMEA)}) are bottom-up methods which start with root causes to forecast unknown effects whereas deductive analysis methods (\textbf{fault tree analysis (FTA)}) go top-down and try to find out root causes from known effects.
 FMEA and FTA approaches are shown in Figures~\ref{fig:fmea} and~\ref{fig:fta}.
-\begin{figure}
+\begin{figure}[H]
   \centering
   \begin{minipage}{0.49\textwidth}
     \centering
@@ -517,7 +519,7 @@ Models consist of an operational context, interfaces, behavior at the borders of
 While modeling, different viewpoints have to be considered and a distinction between different levels of granularity has to be done.\\
 
 The ISO 26262's component model, shown (partly) in Figure~\ref{fig:iso_component_model}, supports a modular construction of the item under consideration with a suitable levels of abstraction.
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[width=.8\textwidth]{images/iso_component_model.png}
   \caption{ISO 26262 Component Model}\label{fig:iso_component_model}
