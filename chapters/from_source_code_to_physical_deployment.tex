@@ -74,7 +74,7 @@ If it fails at any point, the deployment process is stopped.
   \item[Repository] All files are committed to version-control repository — in the deployment context, all of the configuration files and tools.
   \item[Scripted deployment] All deployment processes are written in a script.
   \item[Single command] Deployers, or headless processes, can type a single command to generate working software for users.
-  \item[Externailzed configuration] All variable values are externalized from the application configuration into build-time properties.
+  \item[Externalized configuration] All variable values are externalized from the application configuration into build-time properties.
   \item[Tokenize configuration] Token values are entered into configuration files and then replaced during the Scripted Deployment based on Externalized Configuration properties checked into Repository.
   \item[Template verifier] Create a single template file that all target environment properties are based on.
   \item[Unified deployment] Create a single deployment script capable of running on different platforms and target environments.
@@ -102,7 +102,7 @@ This makes containers smaller than hypervisor guests but does not allow running 
 
 The most popular system for container virtualization is Docker.
 Its system is depicted in Figure~\ref{fig:docker}.
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[width=.8\textwidth]{images/docker.png}
   \caption{Docker System}\label{fig:docker}
@@ -110,7 +110,8 @@ Its system is depicted in Figure~\ref{fig:docker}.
 
 \subsection{Software Architecture for the cloud}
 The cloud is a style of computing in which scalable and elastic IT-enabled capabilities are delivered as a service to external customers using Internet technologies.\\
-The main goals are increased availability and reachability, reduced investments and increased stability and the main challenges confidentiality, integrity, availability, privacy, the increased attack surface it implies, the difficulty to audit and legal and trust issues.\\
+The main goals are increased availability and reachability, reduced investments and increased stability.
+The main challenges are confidentiality, integrity, availability, privacy, the increased attack surface it implies, the difficulty to audit the system, as well as legal and trust issues.\\
 The cloud provides on-demand self-service, broad network access and resource pooling.
 
 \paragraph{Cloud Reference Architecture}
@@ -129,14 +130,14 @@ The cloud provides on-demand self-service, broad network access and resource poo
 
 \paragraph{Xaas}
 \textbf{Software as a Service (Saas)} provides applications running on the cloud to consumers.
-Network, Severs, OS and Storage is all handled by the provider, the consumer interacts with the cloud through client interfaces as a web browser or a program interface.\\
+Network, Severs, OS and Storage is all handled by the provider, the consumer interacts with the cloud through client interfaces as a web browser or a program interface. (Google Apps, Dropbox, Office 365)\\
 
 \textbf{Platform as a Service (PaaS)} provides the consumer with programming languages,
 libraries, services, and tools who is then able to deploy an application into that environment.
-The provider still handles network, servers, OS and storage but the consumer has control over the deployed applications.\\
+The provider still handles network, servers, OS and storage but the consumer has control over the deployed applications. (Github, Google App Engine)\\
 
 \textbf{Infrastructure as a Service (IaaS)} provides the consumer with processing, storage, network and other fundamental computing resources onto which the customer can deploy arbitrary software (including OSes).
-The consumer here as control over OS, storage, deployed applications and a limited set of network components like firewalls.
+The consumer here as control over OS, storage, deployed applications and a limited set of network components like firewalls.(Amazon Web Services, Google Compute Engine, Microsoft Azure)
 
 \paragraph{Deployment Model}
 A \textbf{public cloud infrastructure} is provisioned for open use by the general public.
