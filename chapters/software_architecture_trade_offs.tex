@@ -138,7 +138,7 @@ Big data is high-volume, high-velocity and high-variety information assets that 
 Scalability is one of the key concepts of big data.
 It refers to the ability of a system to handle a growing amount of work in a capable manner or its ability to be enlarged to accommodate that growth. We differentiate between vertical and horizontal scaling.\\
 In \textbf{vertical scaling} an existing IT resource is replaced with another one with higher or lower capacity.
-If an replacement with an resource of lower capacity takes place, we speak of scaling up whereas an replacement with a higher capacity one is called scaling down.
+If an replacement with an resource of lower capacity takes place, we speak of scaling down whereas an replacement with a higher capacity one is called scaling up.
 The advantage of this approach is that it is very easy to design vertical scaling.\\
 When \textbf{scaling horizontally} resources are allocated or released dynamically.
 Resource allocation is called scaling out and resource releasing is called scaling in.
@@ -151,7 +151,7 @@ When trying to query this distributed database then, different strategies how to
 The \textbf{lookup strategy} maintains a lookup table in a central node and forwards queries to the according shard based on a shard key and that table.\\
 The \textbf{range strategy} stores ranges of data on shards in sequential order. This can be used to determine which shard particular data is stored on.\\
 Lastly the \textbf{hash strategy} calculates hashes of keys and distributes data based on that hash.
-This has the advantage that data is less clustered which implies better load balancing.\\
+This has the advantage that data is less clustered which implies better load balancing.
 
 \paragraph{NoSQL Data Stores}
 Next generation databases mostly addressing some of the points: being non- relational, distributed, open-source and horizontally scalable.\\
@@ -160,6 +160,7 @@ Next generation databases mostly addressing some of the points: being non- relat
 This approach usually has quite poor performance in cases that require processing of key ranges.
 This might be overcome with ordered key-value approaches.
 Value modeling is not included in this approach.\\
+On example is Redis, one of the most popular key-value store implemented as a in-memory database.
 \begin{minipage}[t]{0.49\textwidth}
   \textbf{Pros (Redis)}
   \begin{itemize}[topsep=0pt,noitemsep]
@@ -185,7 +186,7 @@ Value modeling is not included in this approach.\\
 
 \textbf{Bigtable} is a distributed storage system for managing structured data and is designed to scale to very large sizes.
 It maps two arbitrary string values (row and column key) and a timestamp to an arbitrary byte array.
-Columns are sorted e lexicographically and are divided into so called tablets for load distribution.
+Columns are sorted lexicographically and are divided into so called tablets for load distribution.
 Columns have names of the form $family:qualifier$ and timestamps are used to version the data.\\
 \begin{minipage}[t]{0.49\textwidth}
   \textbf{Pros}
