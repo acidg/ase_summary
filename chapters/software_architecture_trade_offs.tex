@@ -186,7 +186,7 @@ On example is Redis, one of the most popular key-value store implemented as a in
 
 \textbf{Bigtable} is a distributed storage system for managing structured data and is designed to scale to very large sizes.
 It maps two arbitrary string values (row and column key) and a timestamp to an arbitrary byte array.
-Columns are sorted lexicographically and are divided into so called tablets for load distribution.
+Rows are sorted lexicographically and are divided into so called tablets for load distribution.
 Columns have names of the form $family:qualifier$ and timestamps are used to version the data.\\
 \begin{minipage}[t]{0.49\textwidth}
   \textbf{Pros}
